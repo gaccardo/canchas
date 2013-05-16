@@ -34,14 +34,14 @@ class CustomTaskBarIcon( wx.TaskBarIcon ):
 
    def __init__(self): 
         super( CustomTaskBarIcon, self).__init__()
-        icon   = wx.Icon("favicon.ico", wx.BITMAP_TYPE_ICO)
+        icon   = wx.Icon("images/favicon.ico", wx.BITMAP_TYPE_ICO)
         tbicon = wx.TaskBarIcon()
         tbicon.SetIcon(icon, "Canchas - Tifosi")
 
         self.Bind(wx.EVT_MENU, self.OnMenu)
         self.Bind(wx.EVT_MENU, self.OnAbout, id=wx.ID_ABOUT)
         self.Bind(wx.EVT_MENU, self.OnClose, id=wx.ID_CLOSE)
-        self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.OnClick)
+        self.Bind(wx.EVT_TASKBAR_LEFT_DOWN,  self.OnClick)
 
 
 class CanchasFrame( wx.Frame ):
@@ -153,8 +153,14 @@ class CanchasLoginFrame( wx.Frame ):
 def LaunchApp( evt ):
     if evt.data != "denied":
         user      = evt.data
-        user_data = User( user['id'], user['nombre'], user['usuario'], user['passwd'], user['id_sucursal'],
-                          user['status'], user['telefono'], user['type'] )
+        user_data = User( user['id'], 
+                          user['nombre'],
+                          user['usuario'],
+                          user['passwd'],
+                          user['id_sucursal'],
+                          user['status'],
+                          user['telefono'], 
+                          user['type'] )
 
         FRAME = CanchasFrame( user_data )
         FRAME_LOGIN.Destroy()
@@ -164,8 +170,7 @@ def LaunchApp( evt ):
 
 
 if __name__ == "__main__":
-    #app         = wx.App(redirect=True,filename="error.log")
-
+    #app = wx.App(redirect=True,filename="error.log")
     app = wx.App(redirect=False)
     #lc  = LicenseChecker()
     #act = lc.isActive()

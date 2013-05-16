@@ -73,14 +73,14 @@ class MyCalendar(wx.Dialog):
 
         txt_cal_hasta = wx.StaticText(self, -1, "Fecha Hasta:")
         self.calend2  = wx.calendar.CalendarCtrl(self, -1, wx.DateTime_Now(),
-        style = wx.calendar.CAL_SHOW_HOLIDAYS|wx.calendar.CAL_SEQUENTIAL_MONTH_SELECTION)
+        style         = wx.calendar.CAL_SHOW_HOLIDAYS|wx.calendar.CAL_SEQUENTIAL_MONTH_SELECTION)
         vbox.Add(txt_cal_hasta, flag=wx.CENTER)
         vbox.Add(self.calend2, 0, wx.EXPAND | wx.ALL, 20)
 
         vbox.Add((-1, 20))
 
-        hbox2 = wx.BoxSizer(wx.HORIZONTAL)
-        btn = wx.Button(self, -1, 'Ok')
+        hbox2     = wx.BoxSizer(wx.HORIZONTAL)
+        btn       = wx.Button(self, -1, 'Ok')
         cancelBtn = wx.Button(self, -1, 'Cancel')
         hbox2.Add(btn, 1)
         hbox2.Add(cancelBtn, 1)
@@ -117,11 +117,12 @@ class IniciarCaja(wx.Dialog):
 
         hbox2      = wx.BoxSizer(wx.HORIZONTAL)
         self.money = wx.TextCtrl(self, -1, "")
-        image      = wx.Image('green-ok.gif', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        image      = wx.Image('green-ok.gif', 
+                              wx.BITMAP_TYPE_ANY).ConvertToBitmap()
         btn_ini    = wx.BitmapButton(self, id=-1, bitmap=image, size=(30,30))
 
-        vbox.Add( hbox1 )
-        vbox.Add( hbox2 )
+        vbox.Add(  hbox1 )
+        vbox.Add(  hbox2 )
         hbox1.Add( title )
         hbox2.Add( self.money )
         hbox2.Add( btn_ini )
@@ -174,13 +175,11 @@ class CanchasTabFinanzas(wx.Panel):
        #hbox1.Add(btn_vta)
        self.vbox.Add(hbox1)
 
-       self.hbox2 = wx.BoxSizer( wx.HORIZONTAL )
-
+       self.hbox2     = wx.BoxSizer( wx.HORIZONTAL )
        self.list_ctrl = wx.ListCtrl(self, style=wx.LC_REPORT)
 
        self.hbox2.Add(self.list_ctrl, 2, flag=wx.EXPAND)
        self.vbox.Add(self.hbox2, 2, wx.EXPAND)
-
        self.TOTAL     = 0
 
        self.SetSizer(self.vbox)
@@ -257,7 +256,8 @@ class CanchasTabFinanzas(wx.Panel):
       nombre	 = "ventas"+this_time+".pdf "
       #import pdb;pdb.set_trace()
       if self.desde == None or self.hasta == None:
-           wx.MessageBox('Primero debe seleccionar un rango para el reporte', 'Error al generar el reporte',
+           wx.MessageBox('Primero debe seleccionar un rango para el reporte',
+                         'Error al generar el reporte',
                           wx.OK | wx.ICON_ERROR)
       else:
            dlg = wx.FileDialog(
@@ -268,7 +268,7 @@ class CanchasTabFinanzas(wx.Panel):
            )
            if dlg.ShowModal() == wx.ID_OK:
                paths = dlg.GetPaths()
-               path = None
+               path  = None
                for path in paths:
                    path = path
            dlg.Destroy()

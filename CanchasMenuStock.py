@@ -14,24 +14,22 @@ class SearchStock( wx.Dialog ):
         sizer           = wx.BoxSizer(wx.HORIZONTAL)
         txt_buscar      = wx.StaticText(self, -1, "Buscar")
         self.ctr_buscar = wx.TextCtrl(self, -1, "")
-
         sizer.Add(txt_buscar, wx.CENTER|wx.EXPAND)
         sizer.Add(self.ctr_buscar, 0, wx.ALL, 1)
 
         sizer2     = wx.BoxSizer(wx.HORIZONTAL)
         btn_buscar = wx.Button(self, -1, "BUSCAR")
-
         self.Bind(wx.EVT_BUTTON, self.__OnSearch, btn_buscar) 
         sizer2.Add(btn_buscar, wx.EXPAND)
 
         global_sizer.Add(sizer, 0, wx.EXPAND, 1)
         global_sizer.Add(sizer2, 0, wx.EXPAND, 1)
-
         self.SetSizer(global_sizer)
         self.Show(True)
 
     def __OnSearch( self, evt ):
-        Publisher().sendMessage(("producto_buscado"), self.ctr_buscar.GetValue())
+        Publisher().sendMessage(("producto_buscado"), 
+                                self.ctr_buscar.GetValue())
         self.Hide()
         self.Destroy()
 
@@ -42,7 +40,7 @@ class AddStock( wx.Dialog ):
 
         self.DBM = DBManager()
  
-        self.SetSize((210,375))
+        self.SetSize(   (210,375))
         self.SetMinSize((210,375))
 
         vbox = wx.BoxSizer( wx.VERTICAL )
@@ -68,8 +66,8 @@ class AddStock( wx.Dialog ):
         hbox3.Add(self.ctr_marca, wx.EXPAND, 1)
         vbox.Add(hbox3, wx.EXPAND) 
 
-        hbox4      = wx.BoxSizer( wx.HORIZONTAL )
-        txt_precio = wx.StaticText(self, -1, "Precio")
+        hbox4           = wx.BoxSizer( wx.HORIZONTAL )
+        txt_precio      = wx.StaticText(self, -1, "Precio")
         self.ctr_precio = wx.TextCtrl(self, -1, "")
         hbox4.Add(txt_precio, wx.EXPAND, 1)
         hbox4.Add(self.ctr_precio, wx.EXPAND, 1)
@@ -110,14 +108,16 @@ class AddStock( wx.Dialog ):
         try:
            tmp = float(precio)
         except:
-           wx.MessageBox('El formato de precio debe ser: 0.00', 'No es un precio valido',
+           wx.MessageBox('El formato de precio debe ser: 0.00', 
+                         'No es un precio valido',
                           wx.OK | wx.ICON_ERROR)
            return
 
         try:
            tmp = int(ppedido)
         except:
-           wx.MessageBox('Punto de pedido debe ser un numero', 'No es un numero',
+           wx.MessageBox('Punto de pedido debe ser un numero', 
+                         'No es un numero',
                           wx.OK | wx.ICON_ERROR)
            return
 
@@ -139,7 +139,12 @@ class AddStock( wx.Dialog ):
 
            return
         else:
-           cod, msg = self.DBM.addProduct(codigo, descr, marca, precio, ppedido, cantidad)
+           cod, msg = self.DBM.addProduct(codigo, 
+                                          descr,
+                                          marca,
+                                          precio, 
+                                          ppedido, 
+                                          cantidad)
 
            if not cod:
               wx.MessageBox(msg, 'Error en la carga de datos',
@@ -157,16 +162,36 @@ class StockAdmin( wx.Dialog ):
         self.SetMinSize((800,600))
 
         self.list_ctrl = wx.ListCtrl(self, style=wx.LC_REPORT)
-        image1         = wx.Image('search10.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        self.btn_cal   = wx.BitmapButton(self, id=-1, bitmap=image1, size=(24,24))
-        image2         = wx.Image('add.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        self.btn_add   = wx.BitmapButton(self, id=-1, bitmap=image2, size=(24,24))
-        image3         = wx.Image('print.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        self.btn_prt   = wx.BitmapButton(self, id=-1, bitmap=image3, size=(24,24))
-        image4         = wx.Image('edit.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        self.btn_mod   = wx.BitmapButton(self, id=-1, bitmap=image4, size=(24,24))
-        image5         = wx.Image('delete.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        self.btn_del   = wx.BitmapButton(self, id=-1, bitmap=image5, size=(24,24))
+        image1         = wx.Image('images/search10.png', 
+                                  wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        self.btn_cal   = wx.BitmapButton(self, 
+                                         id     = -1,
+                                         bitmap = image1, 
+                                         size   = (24,24))
+        image2         = wx.Image('images/add.png', 
+                                  wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        self.btn_add   = wx.BitmapButton(self,
+                                         id     = -1,
+                                         bitmap = image2, 
+                                         size   = (24,24))
+        image3         = wx.Image('images/print.png', 
+                                  wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        self.btn_prt   = wx.BitmapButton(self,
+                                         id     = -1,
+                                         bitmap = image3,
+                                         size   = (24,24))
+        image4         = wx.Image('images/edit.png', 
+                                  wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        self.btn_mod   = wx.BitmapButton(self,
+                                         id     = -1,
+                                         bitmap = image4, 
+                                         size   = (24,24))
+        image5         = wx.Image('images/delete.png', 
+                                  wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        self.btn_del   = wx.BitmapButton(self, 
+                                         id     = -1, 
+                                         bitmap = image5,
+                                         size   = (24,24))
         self.DBM       = DBManager()
 
         self.__generateContent()
@@ -176,7 +201,12 @@ class StockAdmin( wx.Dialog ):
 
         try:
            for row in self.DBM.getProductos(myfilter):
-              rows.append( (row[1], row[3], row[2], str(row[4]), str(row[6]), str(row[5])) )
+              rows.append( (row[1],
+                            row[3],
+                            row[2], 
+                            str(row[4]), 
+                            str(row[6]),
+                            str(row[5])) )
         except TypeError:
               rows.append( ('Vacio', '', '', '', '', '') )
 
@@ -258,7 +288,6 @@ class StockAdmin( wx.Dialog ):
 
         RPTR = Reporter( path, self.DBM.getProductos(), "stock" )
         RPTR.doReport()
-
 
     def refreshAfterAdd( self, evt ):
         self.list_ctrl.ClearAll()

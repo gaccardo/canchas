@@ -9,3 +9,4 @@ TODO
 
 * Poner las imágenes en un directorio
 * Generear directorio include para libs
+* Acomodar GUI URGENTE!

@@ -12,7 +12,9 @@ class CanchasEntrada( wx.Dialog ):
         vbox  = wx.BoxSizer( wx.VERTICAL )
         hbox1 = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.clock = wx.StaticText(self, -1, datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+        self.clock = wx.StaticText(self,
+                                   -1,
+                                   datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
         font       = wx.Font(16, wx.NORMAL, wx.NORMAL, wx.BOLD)
         self.clock.SetFont(font)
         self.timer = wx.Timer(self)

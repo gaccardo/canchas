@@ -59,7 +59,6 @@ class ReservaForm( wx.Dialog ):
         self.precio = self.DBM.getCanchaPrecio( data[0] )
         hbox3       = wx.BoxSizer( wx.HORIZONTAL )
         label5      = wx.StaticText( self, label="Precio:")
-        #self.preci  = wx.StaticText( self, label="$%s" % self.precio)
         self.preci  = wx.TextCtrl( self, -1, "$%.2f" % self.precio)
         hbox3.Add(label5)
         hbox3.Add(self.preci)
@@ -103,7 +102,10 @@ class ReservaForm( wx.Dialog ):
         
         self.precio = self.preci.GetValue()
         self.precio = float(self.precio.split('$')[1])
-        result = {'old_data':self.data, 'precio':self.precio, 'cliente':self.text2.GetValue(), 'msg':error}
+        result = {'old_data' : self.data, 
+                  'precio'   : self.precio, 
+                  'cliente'  : self.text2.GetValue(), 
+                  'msg'      : error}
         self.Destroy()
         Publisher().sendMessage(("reserva_form"), result)
 
@@ -284,7 +286,8 @@ class MinutosDespues(wx.Dialog):
 
 class CanchasTabJuego(wx.Panel):
 
-   def addPanel(self, label, panel, header=False, data=None, cliente=None, precio=None, disabled=None):
+   def addPanel(self, label, panel, header=False, data=None,
+                cliente=None, precio=None, disabled=None):
      
       panel_tmp = wx.Panel(parent = self, 
 		           id     = wx.ID_ANY, 
@@ -305,24 +308,28 @@ class CanchasTabJuego(wx.Panel):
           text.SetFont(font)
       else:
           if label != "RESERVADA" and label != "ACTIVA" and label != 'CERRADA':
-              image2       = wx.Image('favicon.ico', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-              self.btn_res = wx.BitmapButton(panel_tmp, id=-1, bitmap=image2, size=(24,24))
+              image2       = wx.Image('images/favicon.ico', 
+                                     wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+              self.btn_res = wx.BitmapButton(panel_tmp, 
+                                            id=-1, 
+                                            bitmap=image2, 
+                                            size=(24,24))
           else:
               if label != 'CERRADA' and label != "ACTIVA":
-                  image5       = wx.Image('delete.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+                  image5       = wx.Image('images/delete.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
                   self.btn_del = wx.BitmapButton(panel_tmp, id=-1, bitmap=image5, size=(24,24))
 
           if label == "RESERVADA" or label == 'CERRADA' or label == 'ACTIVA':
-              image_info   = wx.Image('info.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+              image_info   = wx.Image('images/info.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
               self.btn_inf = wx.BitmapButton(panel_tmp, id=-1, bitmap=image_info, size=(24,24))
 
           if label != 'ACTIVA' and label == 'RESERVADA':
-              image6       = wx.Image('green-ok.gif', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+              image6       = wx.Image('images/green-ok.gif', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
               self.btn_act = wx.BitmapButton(panel_tmp, id=-1, bitmap=image6, size=(24,24))
           elif label == 'ACTIVA':
-              image9       = wx.Image('red.gif', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+              image9       = wx.Image('images/red.gif', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
               self.btn_dct = wx.BitmapButton(panel_tmp, id=-1, bitmap=image9, size=(24,24))
-              image3       = wx.Image('venta.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+              image3       = wx.Image('images/venta.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
               self.btn_vnt = wx.BitmapButton(panel_tmp, id=-1, bitmap=image3, size=(24,24))
           
           panel_tmp.SetBackgroundColour("White")
@@ -588,13 +595,25 @@ class CanchasTabJuego(wx.Panel):
       if this_time == 'None':
          this_time = datetime.datetime.now().strftime("%m/%d/%y %H:%M:%S")
 
-      cells.append({'label':'HORARIOS', 'header': True, 'data':None, 'cliente':'', 'precio':''})
+      cells.append({'label'   : 'HORARIOS', 
+                    'header'  : True, 
+                    'data'    : None, 
+                    'cliente' : '', 
+                    'precio'  : ''})
 
       for nombre in n_canchas:
-         cells.append( {'label':nombre[1], 'header':True, 'data':None, 'cliente':'', 'precio':''} )
+         cells.append( {'label'   : nombre[1], 
+                        'header'  : True,
+                        'data'    : None, 
+                        'cliente' : '',
+                        'precio'  : ''} )
 
       for hora in horarios:
-         cells.append( {'label':"%s:00 hs" % hora, 'header':True, 'data':None, 'cliente':'', 'precio':''} )
+         cells.append( {'label'   : "%s:00 hs" % hora, 
+                        'header'  : True, 
+                        'data'    : None,
+                        'cliente' : '',
+                        'precio'  : ''} )
 
          for cancha in n_canchas:
             status  = self.DBM.getCanchaStatus(this_time, cancha[0], hora)
@@ -613,14 +632,37 @@ class CanchasTabJuego(wx.Panel):
                status = str( status[0] )
 
                if status == '0':
-                  cells.append( {'label':'LIBRE', 'header': False, 'data': (cancha[0], hora) , 'cliente':cliente, 'precio':precio } )
+                  cells.append( {'label'   : 'LIBRE', 
+                                 'header'  : False,
+                                 'data'    : ( cancha[0],
+                                               hora),
+                                 'cliente' : cliente,
+                                 'precio'  : precio } )
                if status == '1':
-                  cells.append( {'label':'RESERVADA', 'header': False, 'data': (cancha[0], hora) , 'cliente':cliente, 'precio':precio } )
+                  cells.append( {'label'   : 'RESERVADA', 
+                                 'header'  : False,
+                                 'data'    : ( cancha[0],
+                                               hora),
+                                 'cliente' : cliente, 
+                                 'precio'  : precio } )
                if status == '2':
-                  desfasa = self.DBM.getMinutosActivacion(this_time, cancha[0], hora)
-                  cells.append( {'label':'ACTIVA', 'header': False, 'data': (cancha[0], hora, desfasa[0]) , 'cliente':cliente, 'precio':precio } )
+                  desfasa = self.DBM.getMinutosActivacion(this_time, 
+                                                          cancha[0],
+                                                          hora)
+                  cells.append( {'label'   : 'ACTIVA', 
+                                 'header'  : False,
+                                 'data'    : ( cancha[0],
+                                               hora,
+                                               desfasa[0] ), 
+                                 'cliente' : cliente, 
+                                 'precio'  : precio } )
                if status == '3':
-                  cells.append( {'label':'CERRADA', 'header': False, 'data': (cancha[0], hora) , 'cliente':cliente, 'precio':precio } )
+                  cells.append( {'label'   : 'CERRADA',
+                                 'header'  : False, 
+                                 'data'    : ( cancha[0],
+                                               hora ),
+                                 'cliente' : cliente, 
+                                 'precio'  : precio } )
             else:
                cells.append( {'label':'LIBRE', 'header': False, 'data': (cancha[0], hora), 'cliente':'', 'precio':'' } )
                
@@ -679,16 +721,14 @@ class CanchasTabJuego(wx.Panel):
       else:
          cur_date = datetime.datetime.now().strftime("%m/%d/%y").__str__()
 
-      #self.fecha_banner = wx.StaticText(self, -1, cur_date )
-      titulo            = wx.StaticText(self, -1, "Fecha: %s" % cur_date)
-      line              = wx.StaticText(self, -1, "")
-      font              = wx.Font(16, wx.MODERN, wx.NORMAL, wx.BOLD)
+      titulo = wx.StaticText(self, -1, "Fecha: %s" % cur_date)
+      line   = wx.StaticText(self, -1, "")
+      font   = wx.Font(16, wx.MODERN, wx.NORMAL, wx.BOLD)
 
       titulo.SetFont(font)
       self.Bind(wx.EVT_BUTTON, self.ShowCalendar, self.btn_cal)
       self.Bind(wx.EVT_BUTTON, self.OnVenta, self.btn_vnt)
       self.constructCells(self.global_sizer)
-      #self.vbox.Add(titulo, proportion=1)
       self.tool_bar = wx.BoxSizer(wx.HORIZONTAL)
       self.tool_bar.Add(self.btn_cal)
       self.tool_bar.Add(self.btn_vnt)

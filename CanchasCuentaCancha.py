@@ -12,9 +12,8 @@ class SeleccionarProducto( wx.Dialog ):
 
        self.SetSize( ( 320, 260 ) )
 
-       vbox = wx.BoxSizer( wx.VERTICAL )
-       font = wx.Font(16, wx.NORMAL, wx.NORMAL, wx.BOLD)
-
+       vbox   = wx.BoxSizer( wx.VERTICAL )
+       font   = wx.Font(16, wx.NORMAL, wx.NORMAL, wx.BOLD)
        hbox0  = wx.BoxSizer( wx.HORIZONTAL )
        b_text = wx.StaticText( self, -1, "BUSCAR" )
        b_text.SetFont( font )
@@ -23,36 +22,33 @@ class SeleccionarProducto( wx.Dialog ):
 
        hbox1        = wx.BoxSizer( wx.HORIZONTAL )
        self.b_field = wx.TextCtrl( self, -1, "" )
-       #self.b_cant  = wx.TextCtrl( self, -1, "", size=(40,10) )
        b_button     = wx.Button( self, -1, "Buscar" )
-       hbox1.Add( self.b_field, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
-       #hbox1.Add( self.b_cant, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
+       hbox1.Add( self.b_field, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP,
+                  border=10 )
        hbox1.Add( b_button, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
-       vbox.Add( hbox1 )
-       #vbox.Add( (-1, 25) )
+       vbox.Add(  hbox1 )
 
        hbox3       = wx.BoxSizer( wx.HORIZONTAL )
        cantidad    = wx.StaticText( self, -1, "Cantidad" )
        self.b_cant = wx.TextCtrl( self, -1, "", size=(40,20) )
        comprar     = wx.Button( self, -1, "Agregar" )
        hbox3.Add( cantidad, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
-       hbox3.Add( self.b_cant, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
+       hbox3.Add( self.b_cant, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP,
+                  border=10 )
        hbox3.Add( comprar, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
-       vbox.Add( hbox3 )
+       vbox.Add(  hbox3 )
 
        hbox2       = wx.BoxSizer( wx.HORIZONTAL )
        self.b_decr = wx.TextCtrl( self, -1, "", size=(40,20) )
-       #self.list_ctrl = wx.ListCtrl(self, style=wx.LC_REPORT)
-       hbox2.Add( self.b_decr, proportion=3, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
-       vbox.Add( hbox2, proportion=3, flag=wx.CENTER | wx.EXPAND, border=3 )
+       hbox2.Add( self.b_decr, proportion=3, 
+                  flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10 )
+       vbox.Add(  hbox2, proportion=3, flag=wx.CENTER | wx.EXPAND, border=3 )
 
        self.Bind(wx.EVT_BUTTON, self.__OnSearch, b_button)
        self.Bind(wx.EVT_BUTTON, self.__OnBuy, comprar)
 
        self.SetSizer( vbox )
-       self.Show( True )
-
-       #self.__generateContent()
+       self.Show(     True )
 
    def __OnSearch( self, evt ):
        try:
@@ -60,7 +56,9 @@ class SeleccionarProducto( wx.Dialog ):
           if producto[6] == 0:
              self.b_decr.SetValue( "Stock Agotado" )
           else:
-             self.b_decr.SetValue( "%s %s $%.2f" % ( producto[2], producto[3], producto[4] ) )
+             self.b_decr.SetValue( "%s %s $%.2f" % ( producto[2],
+                                                     producto[3],
+                                                     producto[4] ) )
              self.producto_comprado = producto
        except:
           self.b_decr.SetValue( "Producto Inexistente" )
@@ -68,10 +66,13 @@ class SeleccionarProducto( wx.Dialog ):
    def __OnBuy( self, evt ):
       cantidad = self.b_cant.GetValue()
       if self.producto_comprado[6] < int( cantidad ):
-         wx.MessageBox("No tiene suficiente stock para realizar la venta", "Stock Insuficiente",
-                        wx.OK | wx.ICON_INFORMATION)
+         wx.MessageBox("No tiene suficiente stock para realizar la venta", 
+                       "Stock Insuficiente",
+                       wx.OK | wx.ICON_INFORMATION)
       else:
-         Publisher().sendMessage(("producto_seleccionado"), {'producto':self.producto_comprado, 'cantidad':cantidad} )
+         Publisher().sendMessage(("producto_seleccionado"), 
+                                 {'producto':self.producto_comprado, 
+                                  'cantidad':cantidad} )
          self.Destroy()
 
 
@@ -81,19 +82,21 @@ class CuentaCancha( wx.Dialog ):
        wx.Dialog.__init__( self, parent, id, title )
        self.data = data
 
-       self.SetSize( ( 800, 600 ) )
+       self.SetSize(    ( 800, 600 ) )
        self.SetMinSize( ( 800, 600 ) )
 
        self.list_ctrl = wx.ListCtrl(self, style=wx.LC_REPORT)
-       image2         = wx.Image('add.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-       self.btn_add   = wx.BitmapButton(self, id=-1, bitmap=image2, size=(24,24))
-       image5         = wx.Image('delete.png', wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-       self.btn_del   = wx.BitmapButton(self, id=-1, bitmap=image5, size=(24,24))
+       image2         = wx.Image('images/add.png',
+                                 wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+       self.btn_add   = wx.BitmapButton(self, id=-1, bitmap=image2, 
+                                        size=(24,24))
+       image5         = wx.Image('images/delete.png',
+                                  wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+       self.btn_del   = wx.BitmapButton(self, id=-1, bitmap=image5, 
+                                        size=(24,24))
 
        self.__generateContent( )
-
        self.Bind(wx.EVT_CLOSE, self.__OnClose)
-
        Publisher().subscribe(self.__redefine, ("producto_seleccionado"))
 
    def __OnClose( self, evt ):
@@ -102,7 +105,9 @@ class CuentaCancha( wx.Dialog ):
 
    def __generateContent( self ):
        self.DBM          = DBManager()
-       id_reserva        = self.DBM.getIDReservado( self.data['fecha'], self.data['id_cancha'], self.data['horario'] )
+       id_reserva        = self.DBM.getIDReservado( self.data['fecha'],
+                                                    self.data['id_cancha'],
+                                                    self.data['horario'] )
        id_cuenta_horario = self.DBM.getCuentaHorarioID( id_reserva )[0]
        productos         = self.DBM.getProductosByCuenta( id_cuenta_horario )
        rows              = list()
@@ -159,23 +164,39 @@ class CuentaCancha( wx.Dialog ):
 
    def __redefine( self, evt ):
       self.list_ctrl.ClearAll()
-      id_reserva        = self.DBM.getIDReservado( self.data['fecha'], self.data['id_cancha'], self.data['horario'] )
+      id_reserva        = self.DBM.getIDReservado( self.data['fecha'], 
+                                                   self.data['id_cancha'], 
+                                                   self.data['horario'] )
       id_cuenta_horario = self.DBM.getCuentaHorarioID( id_reserva )[0]
 
-      self.DBM.addProductToCuentaCancha( id_cuenta_horario, evt.data['producto'][0], evt.data['producto'][4], evt.data['cantidad'] )
+      self.DBM.addProductToCuentaCancha( id_cuenta_horario, 
+                                         evt.data['producto'][0],
+                                         evt.data['producto'][4],
+                                         evt.data['cantidad'] )
       nueva_cantidad = evt.data['producto'][6] - int( evt.data['cantidad'] )
       self.DBM.reduceStockById( evt.data['producto'][0], nueva_cantidad ) 
-      self.DBM.addProductTrans( self.data["fecha"], evt.data['cantidad'], 1, evt.data['producto'][4], evt.data['producto'][0], 1, 1 , self.data['id_cancha'], id_cuenta_horario)
+      self.DBM.addProductTrans( self.data["fecha"],
+                                evt.data['cantidad'], 
+                                1, 
+                                evt.data['producto'][4],
+                                evt.data['producto'][0],
+                                1,
+                                1,
+                                self.data['id_cancha'], 
+                                id_cuenta_horario)
 
       self.__generateContent()
 
    def onAdd( self, evt ):
-      sp = SeleccionarProducto( self, id=wx.ID_ANY, title="Agregar Producto a la Compra")
+      sp = SeleccionarProducto( self, id=wx.ID_ANY, 
+                                title="Agregar Producto a la Compra")
 
    def onDel( self, evt ):
       item              = self.list_ctrl.GetItem( self.list_ctrl.GetFirstSelected() )
       product           = self.DBM.getProductoByCode( item.GetText() )
-      id_reserva        = self.DBM.getIDReservado( self.data['fecha'], self.data['id_cancha'], self.data['horario'] )
+      id_reserva        = self.DBM.getIDReservado( self.data['fecha'], 
+                                                   self.data['id_cancha'],
+                                                   self.data['horario'] )
       id_cuenta_horario = self.DBM.getCuentaHorarioID( id_reserva )[0]
       productos         = self.DBM.getProductosByCuenta( id_cuenta_horario )
       cantidad          = 0
@@ -186,8 +207,8 @@ class CuentaCancha( wx.Dialog ):
 
       n_cantidad = cantidad + product[0][6]
 
-      self.DBM.reduceStockById( product[0][0], n_cantidad )
-      self.DBM.deleteProductFromCuenta( product[0][0], id_cuenta_horario )
+      self.DBM.reduceStockById(               product[0][0], n_cantidad        )
+      self.DBM.deleteProductFromCuenta(       product[0][0], id_cuenta_horario )
       self.DBM.deleteProductFromProductTrans( product[0][0], id_cuenta_horario )
 
       self.list_ctrl.ClearAll()
