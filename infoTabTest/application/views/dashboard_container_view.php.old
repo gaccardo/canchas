@@ -1,0 +1,91 @@
+<body>
+
+  <div class="heading" style="border:none !important;" onmouseover="toggleDown();">
+    <div style="width: 50%;float: right;">
+        <h1 style="text-align: right">Dashboard Center</h1>
+        <h3 style="text-align: right;width: 40%;float: right;">Bienvenido <?=$user?></h3>&nbsp;
+        <h4 style="text-align: right;width: 50%;float: right;"><?=anchor('login',"Salir");?></h4>
+    </div>
+ </div>
+            
+	<div class="content" style="width: 100%!important;"> 
+	
+        <div style="float: left;" id="menu_holder">	    
+         <p id="menuLog" class="hidden">You chose: <span id="menuSelection"></span></p>
+        
+        <a tabindex="0" href="#tab-groups" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="flat">
+            <span class="ui-icon ui-icon-triangle-1-s"></span>
+                <img border="0" alt="logo" width="120" height="60" src="<?= base_url() .APPPATH ?>images/dashboardsLogo.png"></a></a>
+        <div id="tab-groups" class="hidden">
+        <ul>
+             <?php
+                foreach($groups as $g){
+                   
+                      echo " <li><a href='#'>".$g->group."</a>";
+                      echo "<ul>";
+                      foreach ($subGroups as $s) {
+                          if ($s->group==$g->group) {
+                              echo " <li><a href='#'>".$s->subgorup."</a><ul>";
+                           foreach ($acces as $a) {
+                                    if ($s->subgorup==$a->subgorup && $a->group==$g->group) {
+                                        echo " <li>".anchor('dashboard/showTabs/'.$a->id.'', $a->link)."<li>";
+                                        
+                                      //  <a href='#".$a->link."'>".$a->link."</a><li>" anchor('login', $a->link);
+                                    }
+                                }   
+                              echo"</ul></li>";
+                          } else {
+                              
+                          }
+                          
+                          
+                                            
+                      }
+                      echo "</ul>";
+                     echo"</li>  ";
+                }
+            ?>
+           
+        </ul>
+             
+               
+            
+        </div>
+        </div>
+           <!--<div onmouseover="toggleDown();">
+                      <div class="heading"><img src="<?= base_url() .APPPATH ?>images/login.png" alt="Administrative Console Login" width="48" height="48" />
+                            <h1>Dashboard Center</h1>
+                      </div>
+            </div>
+          <div class="inner">-->
+           
+           
+                  <!--<div id="menu_holder">
+                    <div id="nav">-->
+    
+
+                 
+              <!--</div>
+        </div>-->
+            
+       
+  <div class="tab_container">  
+
+      <ul class="tabs" >  
+       <?php
+       if (isset($templates)) {
+           foreach($templates as $page){
+                  echo " <li><a href='#".$page->nombre."'>".$page->nombre."</a></li>  ";
+            }
+       } else {
+           
+       }
+       
+            
+        ?>
+       </ul>
+         <div id="hit_area2" onmouseover="toggleUp();" >
+           
+         <!-- here commes the templates -->
+         <!-- close with dashboard_close_view-->
+ 

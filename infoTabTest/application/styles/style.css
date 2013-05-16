@@ -1,0 +1,376 @@
+.error_msg {
+	border:1px solid #FF0000;
+	color:#FF0000;
+	margin-left:20px;
+	margin-right:20px;
+	margin-top:0;
+	padding:10px;
+	text-align:center;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
+/*
+tr td {
+	border-bottom:1px solid #ccc;
+	padding-bottom: 2px;
+}*/
+
+table {
+	border:1px solid #ddd;
+	padding:2px;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
+#login table { 
+	border:medium none;
+	padding:0; 
+}
+
+tr.even td {
+	background-color:#efefef;
+}
+
+tr.odd td {
+	background-color:#eeeeee;
+}
+
+/** **/
+#ofertas { margin-bottom: 10px; }
+
+/*to hide menu*/
+#hit_area {
+height: 120px;
+width: 100%;
+margin: 0px;
+padding: 0px;
+display: block;
+background-image: url(badge.jpg);
+background-repeat: no-repeat;
+}
+#menu_holder {
+height: 10px;
+width: 100%;
+display: block;
+position: absolute;
+top: 3px;
+} 
+#nav {
+height: 58px;
+width: 542px;
+margin: 0px auto;
+padding: 0px;
+background-image: url(right.png);
+background-repeat: no-repeat;
+background-position: right;
+}
+
+#nav ul {
+	/*
+margin: 0px;
+padding: 0px 0px 0px 21px;
+height: 58px;
+background-image: url(left.png);
+background-repeat: no-repeat;
+* */
+list-style-type: none;
+
+}
+#nav li{
+/*margin: 0px;
+padding: 0px;*/
+float: left;
+}
+#nav li a:link, #nav li a:active, #nav li a:visited {
+/*background-image: url(middle.png);
+background-repeat: repeat-x;
+height: 58px;*/
+width: 100px;
+display: block;
+/*
+line-height: 58px;*/
+font-weight: bold;
+color: #666666;
+text-decoration: none;
+font-family: Arial, Helvetica, sans-serif;
+text-align: center;
+font-size: 120%;
+}
+#nav li a:focus, #nav li a:hover{
+text-decoration : none;
+-moz-outline:0;
+color: #FFFFFF;
+background-image: url(rollOver.png);
+background-repeat: repeat-x;
+}
+#hit_area2 {
+width: 100%;
+/*background-image: url(../images/login.png);
+background-repeat: no-repeat;
+background-position: center top;*/
+background:#FFFFFF;
+padding: 0px;
+display: block;
+position: relative;
+float:left;
+margin: 0px;
+left: 0px;
+top: 0px;
+}
+/*to hhide menu*/
+
+
+/*to templates */
+
+.portletColumn1{
+	width: 24%;
+	float: left;
+	margin-right:7px;
+	height: auto;
+}
+.portletColumn3 {
+	float: right;
+	width: 24%;
+	height: auto;
+}
+
+.portletColumn2 {
+	/*width: 49%;*/
+	width: 50.7%;
+	float: left;	
+	margin-right:7px;
+	height: auto;
+}
+
+/*dashboard with 2columns float left one of 74% and the other of 24%*/
+.Column1L{
+	width: 74%;
+	float: left;	
+	margin-right:7px;
+	height: auto;
+}
+.Column2L{
+	width: 24%;
+	float: left;
+	/*margin-right:7px;*/
+	height: auto;
+}
+/*dashboard with 2columns float rigth one of 74% and the other of 24%*/
+.Column1R{
+	width: 24%;
+	float: left;	
+	margin-right:7px;
+	height: auto;
+}
+.Column2R{
+	 float: right;
+    height: auto;
+    width: 75%;
+}
+.portletColumn1,
+.portletColumn2,
+.portletColumn3 {	
+	height: auto;
+	vertical-align: center;
+}
+
+/*to horizontal layout*/
+.portletRow1,
+.portletRow3 {
+	width: 100%;
+	float: left;
+		
+}
+
+.portletRow2 {
+	width: 100%;
+	float: left;	
+	
+	
+}
+.portlet1Row2{
+	width: 100%;
+	float: left;	
+	/*margin-right:7px;*/
+}
+
+.portlet1Row1,
+.portlet2Row1{
+	 width: 32.8%;
+	float: left;
+	margin-right:7px;
+}
+.portlet3Row1{
+	 width: 33%;
+	float: left;
+	
+}
+.portletHeader {
+	/*background: none repeat scroll 0 0 #3366CC;*/
+    border-radius: 5px 5px 0 0;
+    float: left;
+	height: 25px;
+	width: 100%;
+	text-align:center;
+	color:#ddd;
+	padding: 1px;
+	-webkit-box-sizing: padding-box!important;
+	-moz-box-sizing: padding-box!important;
+	box-sizing: padding-box!important;
+}
+.portletHeader2{
+ background-color:#9d3363;
+font: bold 10px verdana;
+text-indent: -1px;
+color:#FFFFFF;
+width:464px; 
+
+height:15px;
+ float:left;
+}
+.portletHeader3{
+ background-color:#9d3363;
+font: bold 10px verdana;
+text-indent: -1px;
+color:#FFFFFF;
+width:463px; 
+
+height:15px;
+ float:left;
+}
+.portletContent table {
+	font: 9px verdana;
+	color: #000;
+	/*table-layout: fixed;*/
+}
+
+.portletContent .totalRow {
+	font-weight: bold;
+}
+
+
+/*********************************************************************************
+## PAGE CONTENT:  DASHBOARD [SMALL PORTLETS]
+*********************************************************************************/
+/*.portletSmall h4 {
+	width: 224px;
+	background-color: #7676CE;
+	color: #fff;
+}*/
+.portletFullContent{
+	height:100%;
+	width: 100%;
+	text-align:center;
+	 margin: 2px 0 2px 0;
+}
+.portletFullRow{
+	height:100%;
+	width: 100%;
+	text-align:center;
+	 margin: 2px 0 2px 0;
+	
+}
+.portletFullRow .portletContent {
+	float: left;
+    width: 100%;
+    min-height: 700px;
+	text-align:center;
+	border: 1px solid #427BD6;
+	padding-bottom:5px;
+    
+}
+.portletSuper{
+	min-height:40%;
+	width: 100%;
+	/*margin: 2px 0 2px 0;*/
+	text-align:center;
+	 
+}
+.portletSuper .portletContent {
+	border: 1px solid #427BD6;
+	width: 100%;
+	text-align:center;
+	/*padding-left: 10%!important;
+    padding-right: 10%!important;*/
+	
+}
+.porletSmall{
+	border: 1px solid #CBCBCB;
+	width: 100%;
+	margin: 2px 0 2px 0;
+	text-align:center;
+}
+.portletSmall .portletContent {
+	border: 1px solid #427BD6;
+	width: 100%;
+	text-align:center;
+/*	padding-left: 10%!important;
+    padding-right: 10%!important;*/
+	
+}
+
+.portletSmall2
+{
+
+width: 230px;
+	margin-bottom: 10px;
+}
+.portletSmall .portletContent table {
+	width: 230px;
+}
+
+.portletSmall .portletContent table th {
+	background-color: #BABAE6;
+	text-align: left;
+	padding: 3px 0;
+}
+
+.portletSmall .portletContent table td {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	vertical-align: top;
+}
+
+.portletSmall .portletContent table td img {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	vertical-align: middle;
+}
+
+.portletSmall .portletContent table .alternateRow {
+	background-color: #EEEEF9;
+}
+
+.portletSmall .portletContentScroll {
+	width: 213px;
+	overflow-y: scroll;
+}
+
+.portletSmall .portletContentScroll table {
+	width: 213px;
+}
+
+.porletSmallRow .portletLeft {
+	float: left;
+}
+
+.porletSmallRow .portletRight {
+	float: right;
+}
+
+.portletSmall .leftCorner {
+	/*background-image:url(../images/purpleLTcnr.gif);*/
+	width: 8px;
+	height: 15px;
+}
+
+.portletSmall .rightCorner {
+	/*background-image:url(../images/purpleRTcnr.gif);*/
+	width: 8px;
+	height: 15px;
+}
+
+/*end templates*/

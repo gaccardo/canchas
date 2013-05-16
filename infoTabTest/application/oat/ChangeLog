@@ -1,0 +1,2119 @@
+2008-03-20 14:46  source
+
+	* Updated version to 2.8 for final release
+
+2008-03-20 10:37  source
+
+	* Added Pragmas UI for QBE
+
+2008-03-20 09:48  source
+
+	* Updated version to 2.8-rc8
+
+2008-03-20 09:48  source
+
+	* Updated version
+
+2008-03-20 09:47  source
+
+	* Added support for passing pragmas/options to dereference
+
+2008-03-20 09:47  source
+
+	* Added new gmapapi + fixed loader
+
+2008-03-20 09:45  source
+
+	* Added callbacks for pragmas connected to OAT.Dereference
+	* Added defauklt options for node limit/mode depth selects
+	* Removed grab-everything pragma, since it is not supported by proxy
+
+2008-03-18 18:48  source
+
+	* Regenerated documentation
+
+2008-03-18 09:06  source
+
+	* Updated version
+
+2008-03-18 09:05  source
+
+	* Fixed dependencies
+
+2008-03-18 09:05  source
+
+	* Changed input label to "Data Source (URL):"
+
+2008-03-18 09:04  source
+
+	* Added check/uncheck all feature in rdfstore
+	* Added missing &quot; for " replacement in url sanitization
+	* Minor refactoring in sanitization
+
+2008-03-18 09:03  source
+
+	* Process anchors embedded in content in grid view tab
+	* Fixed regex for grabbing all image URLs embedded in text
+	* Tagcloud tab now displays tagclouds/tags/frequency using SCOT ontology
+	  and is capable of displaying multiple clouds at once
+
+2008-03-18 09:01  source
+
+	* Modified element ids for connection setup to prevent namespace
+	  collisions
+	* Updated the error messages to be more verbose
+	* Moved connection setup back to WebDav.init
+	* Added silenStart option; if set to true, no connection setup dialog
+	  is displayed
+	* Set default path to /DAV/home
+	* Pass http auth options to WebDav.init now
+
+2008-03-18 08:58  source
+
+	* Fixed positioning when attached to hidden elements
+	* Added function to close the anchor from anywhere
+
+2008-03-18 08:55  source
+
+	* Changed visible columns popup to moveable
+	* Replaced OAT.Instant with OAT.Anchor which provides advanced behaviour
+
+2008-03-18 08:54  source
+
+	* Added five seconds granularity to time line scaling
+
+2008-03-18 08:53  source
+
+	* Added checks for defined arguments
+	* Check for proper input param in getElementsByLocalName
+
+2008-03-18 08:50  source
+
+	* Changed to new WebDav API
+	* Removed dav/http connection type from options
+	* Renamed callbacks to match the new API
+	* Added dependency to crypto
+
+2008-03-18 08:45  source
+
+	* Regenerated documentation
+
+2008-03-18 08:44  source
+
+	* Added UI and controls for pragmas
+	* Renamed the data retrieval option fields to spongerSomething
+
+2008-03-18 08:42  source
+
+	* Changed to new WebDav API
+	* Removed dav/http connection type from options
+
+2008-03-10 21:37  source
+
+	* Use http credentials for webdav initialization
+
+2008-03-10 21:34  source
+
+	* Added close button to welcome_screen
+	* Added Data Retrieval Options button
+	* Fixed image size
+	* Added check/uncheck all features in rdfstore
+	* Use http credentials for webdav initialization
+
+2008-03-10 21:33  source
+
+	* Updated images
+
+2008-03-10 21:31  source
+
+	* Fixed labels in advanced tab
+	* Removed commented and unused html code for format and query rows
+	* Changed input label to "Data Source (URL)"
+	* Renamed concepts to classes
+	* Sorted properties and split to attributes/relations
+	* Added labeled sponger-related option select
+	* Renamed pragma options
+	* Moved webdav initialization
+
+2008-03-10 11:34  source
+
+	* Updated documentation
+
+2008-02-21 20:56  source
+
+	* Updated version to 2.8-rc7
+
+2008-02-21 20:55  source
+
+	* Added fulltext search
+	* Fixed typos
+
+2008-02-21 20:55  source
+
+	* Removed ibis ontology from ontology import drop-down since the remote
+	  host seems to be down
+	* Fixed typos
+
+2008-02-21 20:53  source
+
+	* Fixed typos
+
+2008-02-21 00:26  source
+
+	* Updated version to 2.8-rc6
+
+2008-02-21 00:23  source
+
+	* Fixed make distcheck
+
+2008-02-21 00:21  source
+
+	* Added resizable containers
+
+2008-02-21 00:19  source
+
+	* Regenerated documentation
+
+2008-02-20 00:23  source
+
+	* Updated version to 2.8-rc5
+
+2008-02-20 00:22  source
+
+	* Fixed SPARQL queries
+
+2008-02-20 00:22  source
+
+	* Updated oat version
+
+2008-02-20 00:21  source
+
+	* Fixed regexp to be case-insensitive to image extensions
+
+2008-02-20 00:15  source
+
+	* Added tab for custom Fresnel
+	* Fixed throbber position
+	* Fixed vertical wrap width between main content and right toolbar
+	* Minor css fixes
+
+2008-02-11 10:19  source
+
+	* Fixed documentation link
+
+2008-02-11 10:11  source
+
+	* Updated version to 2.8-rc4
+
+2008-02-11 10:09  source
+
+	* Fixed dependencies
+
+2008-02-11 10:08  source
+
+	* New OAT documentation
+
+2008-02-07 16:06  source
+
+	* Fixed issue with look
+	* Fixed aliasing of images
+
+2008-02-06 10:03  source
+
+	* Updated version to 2.8-rc3
+
+2008-02-06 10:03  source
+
+	* Updated version
+
+2008-02-06 10:02  source
+
+	* Rewrote rounded win style
+	* Fixed slow behaviour when used with big number of windows as anchor
+
+2008-02-06 10:01  source
+
+	* Added activation by focus and doubleclick
+	* Added smoother opening and positioning of new windows
+
+2008-02-06 10:00  source
+
+	* Hide dialog's window div immediately after constructor call to reduce
+	  flashing while dialog is being built
+
+2008-02-06 09:59  source
+
+	* Added call to simplify titles
+
+2008-02-06 09:58  source
+
+	* Rewrote rounded win style
+
+2008-02-06 09:56  source
+
+	* Added dependency to simplefx
+
+2008-02-06 09:55  source
+
+	* Removed old dependency for simplefx from win
+
+2008-01-30 14:19  source
+
+	* Fixed dereferencing of turtle file (.ttl extension) to explicitly
+	  specify output format to sponger
+
+2008-01-30 14:18  source
+
+	* Change special characters &lt; &gt; and &amp; from encoded (x)html)
+	  stream into < > & before displaying
+
+2008-01-30 11:35  source
+
+	* Updated version to 2.8-rc2
+
+2008-01-30 11:35  source
+
+	* Renamed designer to dbdesigner
+
+2008-01-30 11:30  source
+
+	* Updated version
+
+2008-01-30 11:29  source
+
+	* Fixed pattern matching bug that made uris starting with https not
+	  deferencable
+
+2008-01-28 10:12  source
+
+	* Added session permalink functionality
+	* Fixed aestethics
+	* Fixed color of hyperlinks
+	* Small changes and cleanups
+
+2008-01-24 11:27  source
+
+	* Updated version to 2.8-rc1
+
+2008-01-24 11:26  source
+
+	* Fixed browser detecting backward compatibility
+
+2008-01-24 11:24  source
+
+	* Fixed OAT.Dom.image() for IE when called with only one parameter
+
+2008-01-24 11:23  source
+
+	* Added $$(className,element) function, returns a list of children of
+	  element (and element itself) belonging to className
+	* Added test for $$() function
+
+2008-01-24 11:21  source
+
+	* Changed array.find to return first match instead of last match
+
+2008-01-24 11:19  source
+
+	* Fixed OAT.Dom.image behavior with PNG images in IE
+
+2008-01-24 11:18  source
+
+	* Fix to prevent loading already loaded stylesheet
+	  (force option loads it anyway)
+
+2008-01-24 11:01  source
+
+	* Removed connection dialog, since this is now part of webdav
+
+2008-01-24 10:59  source
+
+	* Added ODS skin
+
+2008-01-24 10:59  source
+
+	* Added support for custom images via HTML attributes
+
+2008-01-24 10:58  source
+
+	* Fixed autoloader for fresnel tab
+
+2008-01-24 10:56  source
+
+	* Fixed problem with timeline item that only has a start date.
+
+2008-01-24 10:54  source
+
+	* Dereferencable links now contain relative uri in form:
+	  ?uri=http://something/ so they can be copy/pasted
+
+2008-01-24 10:52  source
+
+	* Changed a++ window/image titles to be consistent with isparql
+
+2008-01-24 10:51  source
+
+	* Added explicit notice that 'deaf' elements can be used as separators
+	* Fixed onclick event to propagate too far, causeing submenus to be
+	  opened again after close.
+
+2008-01-24 10:49  source
+
+	* Added support to handle connections independently
+	* Added connection setup dialog and connection status
+	* Fixed wrong prompt for login as DAV
+
+2008-01-24 10:46  source
+
+	* Fixed dependencies
+
+2008-01-24 10:45  source
+
+	* Added scrollbar when a++ windows is too large
+
+2008-01-24 10:45  source
+
+	* Added new images
+
+2008-01-24 10:44  source
+
+	* Fixed isparql params tab to contain a link with full query
+	* Added SCOT ontology to predefined list
+
+2008-01-24 10:43  source
+
+	* Fixed supported browser list
+
+2008-01-24 10:42  source
+
+	* Fixed whitespace
+
+2008-01-24 10:42  source
+
+	* Updated copyright to 2008
+
+2008-01-24 10:41  source
+
+	* Use relative paths so demos and apps can be started direct from this
+	  source tree.
+
+	  Depending on your needs you may need to replace ../ with an absolute
+	  path when using the OAT library within your own web app.
+
+2008-01-24 10:30  source
+
+	* Rewrote OAT.Notify as proper class with constructor. Added support
+	  for displaying over specific divs and absolute/relative
+	  positioning (centred by default). This allows several 'notify containers'
+	  on the screen simultaneously.
+	* Fixed all apps to reflect new Notify API
+
+2008-01-24 10:13  source
+
+	* Updated documentation
+
+2008-01-24 10:13  source
+
+	* Added new RDF browser app
+
+2007-12-04 17:16  source
+
+	* Updated version to 2.7 for final release
+
+2007-12-04 17:15  source
+
+	* Updated version to 04.12.2007
+
+2007-12-04 17:15  source
+
+	* Added support for currency and comma delimited formatting
+	* Fixed space delimited formatting
+
+2007-12-04 16:25  source
+
+	* Fixed indentation
+
+2007-12-04 16:07  source
+
+	* Hide filenames in ChangeLog
+
+2007-12-04 15:48  source
+
+	* Update version to 2.7-rc2
+
+2007-12-04 15:45  source
+
+	* Added missing files to distrib
+
+2007-12-04 15:17  source
+
+	* Removed deprecated directories
+	* Use newer automake/autoconf constructions
+	* Updated version to 2.7-rc1
+
+2007-12-04 15:14  source
+
+	* Added support for .LDR resource when .isparql page is saved.
+	  Content negotiation will redirect to .ldr if rdf is asked, the ldr
+	  itself will execute query and return result (when endpoint is local one)
+	* Fixed reloading icon in schema tree when adding data source URI
+	* Browser select renamed to raw triples, raw triples to grid view
+	* Fixed typos
+	* Fixed bug with empty objrefs{} in json binding list
+	* Added construction to select
+	* Removed unused qbe_save_type and save_type divs and associated js functions
+	* Removed the results select box from UI layout
+	* Use OAT's rdfstore URI simplification
+	* Fixed html validity
+	* Fixed a++ styling
+	* Persist viewer across deref action
+	* Fixed paths
+	* Small cleanups
+
+2007-12-04 15:07  source
+
+	* Added new targets
+
+2007-12-04 15:05  source
+
+	* Fixd path
+	* Small UI fixes
+
+2007-12-04 15:05  source
+
+	* Fixed path
+	* Small UI fixes
+
+2007-12-04 15:01  source
+
+	* Fixed path
+
+2007-12-04 14:59  source
+
+	* Fixed paths
+	* Added extra demos
+
+2007-12-04 14:58  source
+
+	* Fixed paths
+
+2007-12-04 14:58  source
+
+	* Changed raw triples into labeled grid view
+	* Browser changed to raw triples in rhe rdfb
+	* Fixed a++ behaviour
+	* Fixed paths
+	* Fixed rdfb navigation more/less enhancement
+	* Fixed bug with session if connection was cancelled
+	* Added css link to style a++ used in rdfb
+
+2007-12-04 14:51  source
+
+	* Moved into oat/loader
+
+2007-12-04 14:28  source
+
+	* Fixed load paths
+
+2007-12-04 14:26  source
+
+	* Use new OAT.Win api
+	* Rewrote a++ windows fit
+	* Use new imagePath
+
+2007-12-04 14:24  source
+
+	* Small bugfixes
+
+2007-12-04 14:23  source
+
+	* Enhanced RDF browser
+
+2007-12-04 14:22  source
+
+	* Fixed label texts
+
+2007-12-04 14:20  source
+
+	* Added support for oai protocol
+	* Fixed parsing http://user:pass@host/
+	* Fixed queying proxy for N3 file; specify output format as N3 in request
+
+2007-12-04 14:18  source
+
+	* Added new dependencies
+
+2007-12-04 14:17  source
+
+	* Added OAT.Preferences.stylePath variable
+	* Added new OAT.Style api
+	* Merged OAT.Preferences for loading speed
+	* Small bugfixes
+
+2007-12-04 14:13  source
+
+	* Fixed parsing month in timeline control
+
+2007-12-04 14:12  source
+
+	* Rewrote windows styles in new OAT.Win API
+
+2007-12-04 14:12  source
+
+	* Fixed piechart drawing
+
+2007-12-04 14:11  source
+
+	* Added separate timeouts for fade in and fade out
+
+2007-12-04 14:10  source
+
+	* Fixed bug in menu onclick
+
+2007-12-04 14:09  source
+
+	* Rewrote dimmer styling using new OAT.Win styles
+
+2007-12-04 14:08  source
+
+	* Updated gmaps API
+
+2007-12-04 14:06  source
+
+	* Added missing case for "?" append when security cookies are enabled
+	* Fixed imagePath
+	* Fixed appending "?" to uri even when there is no data
+
+2007-12-04 14:05  source
+
+	* Fixed imagePath
+
+2007-12-04 14:04  source
+
+	* Fixed imagePath
+	* Fixed bug with file extentions
+
+2007-12-04 14:01  source
+
+	* Fixed grid clean
+
+2007-12-04 13:59  source
+
+	* New OAT.Win Api
+
+2007-12-04 13:56  source
+
+	* Added new iphone demo page
+
+2007-12-04 13:56  source
+
+	* Added new fresnel demo
+
+2007-12-04 13:54  source
+
+	* Added new demo for interopfest
+
+2007-12-04 13:53  source
+
+	* Added new images
+
+2007-12-04 13:51  source
+
+	* Moved functionality into oat/loader.js
+
+2007-11-27 15:29  source
+
+	* Updated documentation
+
+2007-07-31 14:15  source
+
+	* Updated version to 2.6
+
+2007-07-31 11:31  source
+
+	* Fixed newline at end of file
+
+2007-07-31 11:31  source
+
+	* Fixed make distcheck
+
+2007-07-31 11:14  source
+
+	* Updated version to 2.6-rc1
+
+2007-07-31 11:13  source
+
+	* Fixed comments
+
+2007-07-31 11:12  source
+
+	* Added new demos
+
+2007-07-31 10:57  source
+
+	* Small fixes
+
+2007-07-31 10:55  source
+
+	* Updated version date
+
+2007-07-31 10:55  source
+
+	* Enhanced rdf navigator plurals
+	* Rewrote rdfb a++ API
+	* Added support for Fresnel
+	* Added checkboxes in rdfb cache
+	* Fixed schema import and remove
+	* Fixed blank href
+	* Fixed xhtml icon in rdf store
+	* Fixed paint algorithm in rdfb tree
+	* Fixed dereference premalink in rdfb cache
+	* Small fixes
+
+2007-07-31 10:51  source
+
+	* Fixed N3 parsing
+
+2007-07-31 09:29  source
+
+	* Fixed opacity calculation
+	* Added slider and dock options
+
+2007-07-31 09:28  source
+
+	* Added new script dependencies
+
+2007-07-31 09:26  source
+
+	* Complete rewrite of iSPARQL, optimized for speed and code size
+	* Added support for SPARQL INSERT and DELETE
+
+2007-07-31 09:25  source
+
+	* Fixed redraw
+
+2007-07-31 09:23  source
+
+	* Added support for closable dock windows
+	* Added small improvements
+	* Fixed dock resizing
+	* Updated documentation OAT.Dock
+
+2007-07-31 09:18  source
+
+	* Fixed map custom pins in IE
+
+2007-07-31 09:17  source
+
+	* Fixed grid sort
+	* Fixed grid imagepath
+
+2007-07-31 09:16  source
+
+	* Added account name in OAT.Dereference
+
+2007-07-31 09:15  source
+
+	* Added webdav extention filtering in file input
+
+2007-07-31 09:14  source
+
+	* Fixed grid sort
+
+2007-07-31 09:08  source
+
+	* Fixed fresnel css
+
+2007-07-31 05:08  source
+
+	* Complete rewrite of iSPARQL, optimized for speed and code size
+	* Added support for SPARQL INSERT and DELETE
+
+2007-07-31 04:56  source
+
+	* Added new Fresnel API
+
+2007-07-31 04:56  source
+
+	* Added new Slidebar API
+
+2007-07-31 04:55  source
+
+	* Added new Notify API
+
+2007-07-31 04:51  source
+
+	* Added support for fresnel
+
+2007-07-31 04:47  source
+
+	* Updated graphics
+
+2007-07-31 04:47  source
+
+	* Added slidebar demo
+	* Added notify demo
+
+2007-06-27 08:27  source
+
+	* Updated version to 2.5 for final release
+
+2007-06-27 08:26  source
+
+	* Added missing sample files to distribution
+
+2007-06-26 20:15  source
+
+	* Merged iSPARQL
+
+2007-06-26 13:40  source
+
+	* Updated version to 2.5-rc1
+
+2007-06-26 13:39  source
+
+	* Enhanced RDF browser with new APIs
+
+2007-06-26 13:37  source
+
+	* Added new graphics
+
+2007-06-26 13:37  source
+
+	* Added extra img style elements
+
+2007-06-26 13:35  source
+
+	* Enhanced demos to reflect new APIs
+
+2007-06-26 13:34  source
+
+	* Updated project date
+
+2007-06-26 13:34  source
+
+	* Added rdfbrowser, rdfmini and rdfstore
+	* Added dereference
+	* New bootstrap windowing
+
+2007-06-26 13:30  source
+
+	* Fixed navigation repositioning
+	* Added invisible throbber
+	* Added File menu
+	* Added N3 support
+	* Fixed RDF parser
+	* Added navigator and spotlight tabs
+	* Added browser history
+	* Added throbber abort
+	* Fixded mapping resources detection
+	* Added lat+long direct mapping properties
+	* Fixed yahoo map
+	* Fixed gallery effects in images tab
+	* Added live links in tag soup in rdfb navigator
+	* Use traffic overlay
+	* Fixed timeline scans for 'created'
+	* Adjusted timeline style
+	* Added a++ rdf browser
+	* Added rdf-mini browser
+	* Added tag cloud
+	* Added rdf browser store
+	* Updated rdf parser namespace
+	* Fixed dereference in navigator
+
+2007-06-26 13:23  source
+
+	* Fixed SVG performance
+
+2007-06-26 13:22  source
+
+	* Fixed toolbar DOM
+
+2007-06-26 13:20  source
+
+	* Fixed timeline bugs
+	* Added milliseconds format
+	* Added timeline halfminute step
+	* Added seconds timestep in tlscale
+
+2007-06-26 13:19  source
+
+	* Check callback availability
+
+2007-06-26 13:17  source
+
+	* Added traffic overlay
+	* Added map support for provider-specific options
+	* Added map hover lookup window
+
+2007-06-26 13:16  source
+
+	* Added traffic overlay
+
+2007-06-26 13:15  source
+
+	* Use new OAT.Grid
+	* Added traffic overlay
+
+2007-06-26 13:14  source
+
+	* Use new OAT.Grid
+
+2007-06-26 13:14  source
+
+	* Fixed presentation
+
+2007-06-26 13:13  source
+
+	* Fixed dock delay
+
+2007-06-26 13:12  source
+
+	* Added new OAT.AJAX abort function
+	* Added new callbacks
+
+2007-06-26 13:10  source
+
+	* Rewrote panelbar internals
+
+2007-06-26 13:09  source
+
+	* Added grid doubleclick
+	* Rewrote grid internals
+
+2007-06-26 13:08  source
+
+	* Added new OAT.instant API
+
+2007-06-26 13:07  source
+
+	* Use new OAT.instant API
+
+2007-06-26 13:06  source
+
+	* Added dimmer animation
+	* Added dimmer delay change
+
+2007-06-26 13:05  source
+
+	* Added throbber
+	* Added +r permission to new directory
+
+2007-06-26 13:02  source
+
+	* Updated documentation
+
+2007-06-25 14:12  source
+
+	* Added N3 parser support
+
+2007-06-25 14:12  source
+
+	* Added N3 sample data
+
+2007-06-25 14:05  source
+
+	* Added Tagcloud support
+
+2007-06-25 14:02  source
+
+	* Added DOAP meta information
+
+2007-05-21 13:44  source
+
+	* Updated version to 2.4 for final release
+
+2007-05-21 07:10  source
+
+	* Fixed bootstrap window.init
+
+2007-05-18 12:08  source
+
+	* Updated to 2.4-rc3
+
+2007-05-18 12:03  source
+
+	* Fixed copyright assignments
+
+2007-05-18 11:55  source
+
+	* No svg sidebar in rdfb
+
+2007-05-18 11:54  source
+
+	* Updated build date
+
+2007-05-18 11:54  source
+
+	* Increased SVG graph performance
+
+2007-05-18 11:54  source
+
+	* Removed SVG sidebar in rdfb
+
+2007-05-18 11:53  source
+
+	* Fixed order of extensions in DAV browser
+
+2007-05-18 11:52  source
+
+	* Added OAT.Event.cancel
+
+2007-05-17 10:44  source
+
+	* Updated version to 2.4-rc1
+
+2007-05-17 10:44  source
+
+	* Added SPARQL exhibit
+
+2007-05-17 10:42  source
+
+	* Added openajax
+
+2007-05-17 10:35  source
+
+	* Added handling of malformed URLs
+
+2007-05-17 10:34  source
+
+	* Added new OAT.Style API
+	* Added new OAT.Event API
+	* Added new OAT.Browser API
+	* Fixed browser compatibility
+	* Moved parts of loader to bootstrap to speed up loading
+	* Added smart loading of crypto and window libraries
+	* Added OAT.Dom.uriParams
+	* Rewrote windowing subsystem
+
+2007-05-17 10:31  source
+
+	* Updated version date
+
+2007-05-17 10:31  source
+
+	* Fixed Foreign Keys shcema restrictions
+
+2007-05-17 10:30  source
+
+	* Fixed xslt parameters
+	* Fixed ajax2 type_xml with bad content-type
+	* Added xml methods for serialization and new document creation
+
+2007-05-17 10:29  source
+
+	* Rewrote windowing subsystem
+	* Added magnet snapping
+	* Fixed window accomodation
+
+2007-05-17 10:28  source
+
+	* Added alternative tree node consumption algorithm
+	* Added depth classes for tree
+	* Use new OAT.Style and OAT.Event
+	* Added tree reposition indicators
+	* Added dots in tree
+
+2007-05-17 10:25  source
+
+	* Updated timeline API
+	* Fixed bug with empty timeline
+	* Fixed timeline aesthetics
+	* Fixed browser compatibility
+
+2007-05-17 10:24  source
+
+	* Updated timeline API
+	* Fixed bug with empty timeline
+	* Fixed timeline aesthetics
+	* Fixed browser compatibility
+	* Fixed extremely narrow timelines
+	* Added multiple bands in timeline
+	* Added multiple pin colors in timeline
+
+2007-05-17 10:22  source
+
+	* Added closable undocked windows
+	* Added depth classess for tree
+	* Use new OAT.Style and OAT.Event api
+	* Added new properties
+	* Added code to hide tabs instead of unlinking
+	* Added dock mode for tab
+
+2007-05-17 10:19  source
+
+	* Fixed browser compatibility
+
+2007-05-17 10:18  source
+
+	* Fixed parsing bug with space in quotes
+	* Changed [pos] to charAt(pos) for IE compatibility
+	* Added fix for makign full IRI shorter with prefixes
+	* Added exception handler
+
+2007-05-17 10:17  source
+
+	* Use new OAT.Style
+	* Fixed browser compatibility
+	* Rewrote windowing subsystem
+
+2007-05-17 10:16  source
+
+	* Rewrote windowing subsystem
+	* Fixed window accomodation
+	* Fixed browser compatibility
+
+2007-05-17 10:15  source
+
+	* Use OAT.Style
+	* Fixed browser compatibility checks
+
+2007-05-16 20:29  source
+
+	* Added navigation tab
+	* Added tab descriptions
+	* Restructured internal api and data structures
+	* Added support for dateTime resource
+	* Fixed loading
+	* Added images tab
+	* Added shortcut images
+	* Added options for <a>++
+	* Added session save w/ bookmarks
+	* Added default graph
+	* Added bookmarks in permalink
+	* Updated dav support
+	* Added multiple banks in timeline
+	* Added multiple pin colors in map
+	* Fixed wqx handling
+	* Fixed svgraph <a>++
+	* Added RQ loading
+	* Fixed cross browser support
+
+2007-05-16 20:23  source
+
+	* Fixed label bug in chart
+
+2007-05-16 20:22  source
+
+	* Use new OAT.Style
+
+2007-05-16 20:21  source
+
+	* Rewrote windowing subsystem
+
+2007-05-16 20:20  source
+
+	* Fixed IE yahoo mapping
+	* Added GeoCoding
+
+2007-05-16 15:40  source
+
+	* Rewrote windowing subsystem
+	* Fixed window accomodation
+	* Fixed tree
+
+2007-05-16 15:39  source
+
+	* Fixed Ajax Get/JSON security
+
+2007-05-16 15:37  source
+
+	* Fixed browser compatibility checks
+
+2007-05-16 15:37  source
+
+	* Use new OAT.Style api
+	* Use new OAT.Event api
+	* Fixed tree icon drag
+
+2007-05-16 15:35  source
+
+	* Use new OAT.timeline api
+	* Rewrote windowing system
+	* Fixed bug in toXML
+
+2007-05-16 15:33  source
+
+	* Added magnet snapping
+
+2007-05-16 15:32  source
+
+	* Added new DOCK_DRAG message
+
+2007-05-16 15:32  source
+
+	* Use new OAT.Style api
+	* Fixed opacity for IE6 to all IE version
+	* Fixed browser compatibility checks
+
+2007-05-16 15:30  source
+
+	* Added option to control window close button
+
+2007-05-16 15:29  source
+
+	* Fixed check for http prefix
+
+2007-05-16 15:27  source
+
+	* Rewrote DAV browser
+
+2007-05-16 15:26  source
+
+	* Fixed Yahoo mapping
+
+2007-05-16 15:25  source
+
+	* Rewrote combo* widgets using new api calls
+
+2007-05-16 15:23  source
+
+	* Fixed browser compatibility check
+	* Fixed color encoding
+
+2007-05-16 15:22  source
+
+	* Fixed calendar initalization and (re)drawing
+
+2007-05-16 15:20  source
+
+	* Use new OAT.Dom function for positioning
+
+2007-05-16 15:12  source
+
+	* Use new OAT.Style api
+	* Fixed browser compatibility checks
+
+2007-05-16 15:11  source
+
+	* Fixed updating height in DOM tree
+
+2007-05-16 15:08  source
+
+	* Added throbber to ajax dialog
+	* Added Ajax Get/JSON security
+	* Added noSecurityCookie parameter
+	* Fixed browser compatibility checks
+	* Fixed Firefox problem with synchronous calls
+
+2007-05-16 14:39  source
+
+	* Updated documentation
+
+2007-05-16 14:36  source
+
+	* Fixed load path
+
+2007-05-16 14:34  source
+
+	* Small visual fixes
+	* Fixed browser compatibility
+
+2007-05-16 14:32  source
+
+	* Fixed loading
+	* Small visual fixes
+	* Fixed browser compatibility checks
+
+2007-05-16 14:23  source
+
+	* Added new demos
+	* Updated compatibility matrix
+	* Updated smarter loading
+	* Fixed small bugs in existing demos
+
+2007-05-16 14:13  source
+
+	* Added new RDF Browser application
+
+2007-05-16 14:03  source
+
+	* Added new images
+	* Removed deprecated images
+
+2007-03-20 15:28  source
+
+	* Updated to version 2.3 for final release
+
+2007-03-20 11:39  source
+
+	* Updated version to 2.3-pre1
+
+2007-03-20 11:39  source
+
+	* Fix for IE radio buttons
+	* Enhanced pivot
+	* Fix for DAV related bug
+	* Fix for WebKit clientXY change
+
+2007-03-20 11:37  source
+
+	* Added new tabs for RDF browser
+	* Enhanced mapping in rdftabs
+	* Fixed aestetics in RDF browser
+	* Fixed DAV in RDF browser
+	* Fixed type category always visible in RDF browser
+	* Fixed <script> issue in RDF browser
+	* Fixed image deferencable in RDF browser
+	* Fixed RDF browser accumulation
+	* Fixed RDF browser URI filters
+	* Fixed RDF browser <a++> also in custom contents
+
+2007-03-20 11:34  source
+
+	* Fix for RDF browser tabs
+	* Fix for image deferencable in RDF browser
+
+2007-03-20 11:33  source
+
+	* Fix for pivot
+
+2007-03-20 11:33  source
+
+	* Fix for RDF browser tabs
+
+2007-03-20 11:32  source
+
+	* Fix for map layers
+	* Google maps API update
+
+2007-03-20 11:31  source
+
+	* Fixed typo
+
+2007-03-20 11:30  source
+
+	* Updated version string
+
+2007-03-20 11:30  source
+
+	* Fix for rdf browser
+
+2007-03-20 11:30  source
+
+	* Fix for rdf browser tabs
+
+2007-03-20 11:29  source
+
+	* Fix for invalid dates for timeline
+	* Small bugfixes
+
+2007-03-20 11:28  source
+
+	* Fix for tabs in RDF browser
+
+2007-03-20 11:26  source
+
+	* Fix for QBE location of tree images
+
+2007-03-20 11:25  source
+
+	* Enhanced Pivot & timeline styles
+
+2007-03-20 11:23  source
+
+	* Enhanced Pivot demo
+
+2007-03-20 11:22  source
+
+	* Use Open instead of Load
+
+2007-03-20 11:21  source
+
+	* Fix for basic HTTP auth
+
+2007-03-20 11:18  source
+
+	* Added exception handler
+	* Added DESCRIBE support
+
+2007-03-20 11:18  source
+
+	* Fix for ghostdrag in IE
+
+2007-03-20 11:17  source
+
+	* Added SaveContentType property
+	* Fix for names with spaces
+	* Fix for displaying human readable filesizes
+	* Fix for error handling
+
+2007-03-20 11:15  source
+
+	* Fixed initial date in calendar
+
+2007-03-20 11:15  source
+
+	* Added pivot empty columns/rows hiding
+	* Added pivot totals charts
+	* Fixed problem with IE radio
+	* Fixed totals aggregate & demo
+
+2007-03-20 11:09  source
+
+	* More files to ignore
+
+2007-03-20 10:59  source
+
+	* Added RDF Browser tabs
+
+2007-03-20 10:59  source
+
+	* Removed deprecated files
+
+2007-02-23 12:34  source
+
+	* Changed version to 2.2 for final release
+
+2007-02-23 12:34  source
+
+	* Added group types
+	* Added group visibility
+
+2007-02-23 12:34  source
+
+	* Fixed RDF browser indicator
+
+2007-02-23 12:33  source
+
+	* Fixed grid sroting with 0 rows
+
+2007-02-23 12:33  source
+
+	* Fixed callback
+
+2007-02-23 12:32  source
+
+	* Fixed undeclared variable
+
+2007-02-22 13:25  source
+
+	* Updated version to 2.2-rc1
+
+2007-02-22 13:24  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist fixes
+	* Fixed window overriding
+
+2007-02-22 13:24  source
+
+	* Added Tabbed RDF Browser
+
+2007-02-22 13:24  source
+
+	* Fixed svgsparql edge select & signal issue
+	* Fixed visibility for svgsparql edges
+	* Fixed imagePath in RDF Graph
+	* Added Lasso in svgsparql
+	* Fixed svgsparql reposition
+	* Fixed svgsparql group redraw
+	* Fixed highlights & group selects
+
+2007-02-22 13:24  source
+
+	* Added support for CONSTRUCT statements
+	* Added support for multiple from
+	* Fixed parsing whitespace after keyword
+
+2007-02-22 13:24  source
+
+	* Added OAT.AJAX
+	* Window changes
+
+2007-02-22 13:24  source
+
+	* Added RDF Browser navigation
+	* Added Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 13:24  source
+
+	* Window style changes
+
+2007-02-22 13:24  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 13:24  source
+
+	* Fixed RectWin
+	* RDF Browser dereferencing draft
+	* Window style changes
+
+2007-02-22 13:24  source
+
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Fixed RectWin
+	* More RDF Browser features
+	* RDF Browser dereferencing draft
+	* Sorting in RDF Browser
+
+2007-02-22 13:23  source
+
+	* Added global OAT.Preferences.imagePath
+	* Added RDF Browser navigation
+	* Added Tabbed RDF Browser
+	* Added Trailing slash for xsltPath
+	* Fixed Combolist
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Fixed RectWin
+	* More RDF Browser features
+	* RDF Browser dereferencing draft
+	* Sorting in RDF Browser
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+	* Window changes
+	* Changed map lookup window displaying algorithm
+	* DS_* messages in datasource.js
+	* date update in preferences
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Sorting in RDF Browser
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Window style changes
+	* Fix for hidden up arrow
+
+2007-02-22 13:23  source
+
+	* Massive graphing update
+
+2007-02-22 13:23  source
+
+	* Changed map lookup window displaying algorithm
+	* DS_* messages in datasource.js
+	* Massive graphing update
+	* Documentation update
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added global OAT.Preferences.imagePath
+	* Added RDF Browser navigation
+	* Added Trailing slash for xsltPath
+	* Changed map lookup window displaying algorithm
+	* Fixed Combolist
+	* Dimmer IE better functionality
+	* DS_* messages in datasource.js
+	* More RDF Browser features
+	* RDF Browser dereferencing draft
+	* RectWin fixes
+	* Tabbed RDF Browser
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Fixed JSON
+	* Fixed RDF parsing
+	* Sorting in RDF Browser
+
+2007-02-22 13:23  source
+
+	* Added RDF Browser navigation
+	* Added global OAT.Preferences.imagePath
+	* Added trailing slash for xsltPath
+	* Combolist fixes
+
+2007-02-22 13:23  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+	* Fixed visibility for svgsparql edges
+	* Fixed imagePath in RDF Graph
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Fixed visibility for svgsparql edges
+	* Fixed imagePath in RDF Graph
+
+2007-02-22 13:23  source
+
+	* More RDF Browser features
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Tree in Formdesigner (palette)
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+	* Window changes
+	* Changed map lookup window displaying algorithm
+	* DS_* messages in datasource.js
+	* Fixed Hidden container
+	* Massive graphing update
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Window changes
+	* Flash control in Formdesigner
+	* Datasource not in properties (nav, graph)
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Fixed DSTransport cursor type
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Dimmer IE better functionality
+
+2007-02-22 13:23  source
+
+	* Added global OAT.Preferences.imagePath
+	* Added imagePath for dialog
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Combolist fixes
+
+2007-02-22 13:23  source
+
+	* Added Tabbed RDF Browser
+	* Fixed RectWin
+	* RDF Browser dereferencing draft
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Added global OAT.Preferences.imagePath
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Combolist fixes
+	* Fixed setting the imagePath for the grid
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Added OAT.AJAX
+	* Changed map lookup window displaying algorithm
+	* Datasource not in properties (nav, graph)
+	* DS_* messages in datasource.js
+	* Flash control in Formdesigner
+	* Window changes
+
+2007-02-22 13:23  source
+
+	* Google maps API update fix
+
+2007-02-22 13:23  source
+
+	* Added RDF Browser navigation
+	* Added trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Combolist fixes
+
+2007-02-22 13:23  source
+
+	* Added Tabbed RDF Browser
+	* Anchor default href
+	* Anchor improvements
+
+2007-02-22 13:23  source
+
+	* Added headers to errorRef as 3-rd parameter
+	* Added method PROPPATCH
+	* Added to send imagesPath option to dialog
+	* Auto fixing imagepath for dialog
+
+2007-02-22 13:17  source
+
+	* Added new OAT.AJAX API
+
+2007-02-22 12:55  source
+
+	* Updated documentation
+
+2007-02-22 12:55  source
+
+	* Added new OAT.AJAX
+	* Added OAT.AJAX docs
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 12:54  source
+
+	* Added new OAT.AJAX
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+	* Tabbed RDF Browser
+	* Massive graphing update
+
+2007-02-22 12:51  source
+
+	* Fixed broken images
+
+2007-02-22 12:50  source
+
+	* Added new OAT.AJAX
+	* Fixed window
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-02-22 12:49  source
+
+	* Added new OAT.AJAX
+	* Fixed RDF Browser navigation
+	* Trailing slash for xsltPath
+	* Added global OAT.Preferences.imagePath
+	* Fixed Combolist
+
+2007-01-31 10:12  source
+
+	* Updated version to 2.1 for final release
+
+2007-01-31 10:11  source
+
+	* Fixed typo
+
+2007-01-31 10:11  source
+
+	* Added missing files to distribution
+
+2007-01-30 17:25  source
+
+	* Updated version to 2.1-rc1
+
+2007-01-30 17:18  source
+
+	* Fixed indentation and whitespace
+
+2007-01-30 17:02  source
+
+	* Added new form API
+
+2007-01-30 17:01  source
+
+	* Added Graph sidebar classes
+
+2007-01-30 17:00  source
+
+	* Added Geometry API
+
+2007-01-30 16:58  source
+
+	* Fixed parsing
+	* Fixed whitespace recognition
+	* Improved formatting query generation
+	* Fixed FireFox strict warnings
+	* Fixed Sparql parser on IE
+	* Added snap-like window type
+	* Fixed Opera XML parser warning
+	* Fixed parsing union
+	* Removed extra space from ORDER BY
+
+2007-01-30 16:55  source
+
+	* Added RDF Graph sidebar classes
+	* Fixed SVGSparql reposition() for groups
+	* Advanded sidebar for RDF graph
+	* Fixed SVG Graph on Opera
+
+2007-01-30 16:51  source
+
+	* Added default label for Grid and Twostate
+	* Fixed FormObject fromXML
+	* Fixed Formdesigner
+	* Added Properties of RDF Graph in Formdesigner
+
+2007-01-30 16:48  source
+
+	* OAT.Xmla now uses connection object
+	* Fixed OAT.Connection.toXML
+
+2007-01-30 16:48  source
+
+	* OAT.Xmla now uses connection object
+	* Fixed OAT.Connection.toXML
+	* Fixed Pivot drag
+
+2007-01-30 16:46  source
+
+	* Enhanced Tree API
+	* Enhanced Animation API
+	* Enhanced Dom API
+	* Enhanced debugging (default off)
+	* Fixed OAT.Files
+	* Added OpenAjax loader support
+	* Fixed OAT.Dom.hide/show
+	* No need for toolkitPath
+
+2007-01-30 16:42  source
+
+	* Changed Animation API
+	* Updated documentation
+	* Enhanced dock
+
+2007-01-30 16:41  source
+
+	* Added option for Filetype/Extention choose
+	* Added folder filter based on file type field
+	* Fixed Firefox strict warnings
+	* Fixed automatic adding of extentions when saving files
+
+2007-01-30 16:39  source
+
+	* OAT.Xmla now uses connection object
+	* Fixed OAT.Connection.toXML
+	* Fixed XML serialization for OAT.Connection
+
+2007-01-30 16:37  source
+
+	* Fixed positioning in barchart
+
+2007-01-30 16:37  source
+
+	* Changed Animation API
+
+2007-01-30 16:36  source
+
+	* Added Form support in Anchor
+	* Small anchor fixes
+	* Fixed documentation
+	* Only 1 anchor at a time
+
+2007-01-30 16:35  source
+
+	* Removed debug line
+
+2007-01-30 16:25  source
+
+	* Added ESC and ENTER to known keycodes
+	* Updated documentation
+
+2007-01-30 15:58  source
+
+	* Changed animation API
+
+2007-01-30 15:56  source
+
+	* Fixed piechart full ellipse
+
+2007-01-30 15:55  source
+
+	* Updated date field
+
+2007-01-30 15:55  source
+
+	* Added RDF browser widget
+
+2007-01-30 15:54  source
+
+	* Added RDF Grapher sidebar
+	* Added RDF browser widget
+	* Fixed RDF triple parsing speed
+
+2007-01-30 15:52  source
+
+	* Added support for rectangular windows
+
+2007-01-30 15:51  source
+
+	* Added resizable RDF Graph
+
+2007-01-30 15:51  source
+
+	* Minor fixes
+
+2007-01-30 15:49  source
+
+	* Added RSS reader
+
+2007-01-30 15:49  source
+
+	* Animation API change
+
+2007-01-30 15:48  source
+
+	* Fixed comment
+
+2007-01-30 15:47  source
+
+	* Added option to set custom images
+	* Fixed Tree font size
+	* Enhanced checkboxMode
+
+2007-01-30 15:45  source
+
+	* Fixed Variable upload input names
+
+2007-01-30 15:42  source
+
+	* Added OAT.Xml.removeDefaultNamespace
+	* Added OAT.Xml.getLocalAttribute
+	* Added check for well-formed XML
+
+2007-01-30 15:40  source
+
+	* OAT.Xmla now uses connection object
+	* Fixed OAT.Connection.toXML
+	* In-page materialization
+
+2007-01-30 15:39  source
+
+	* Whitespace
+
+2007-01-30 15:38  source
+
+	* Added SVGSparql patterns
+	* Added addGroupCallback and removeGroupCallback
+	* Added support for multiple groups in SVGSparql
+	* Added Geometry library
+	* Added color grouping
+	* Fixed Pivot drag
+	* Fixed SVGSparql reposition() for Groups
+	* Fixed group labels, edges & to/fromXML
+	* Fixed SVG Graph on Opera
+	* Fixed SVGSparql group removing
+	* Fixed clear to reset the groups array
+	* Fixed SVGSparql redraw optimization
+
+2007-01-30 15:24  source
+
+	* Fixed make distcheck
+
+2007-01-30 14:53  source
+
+	* Updated documentation
+
+2007-01-30 14:53  source
+
+	* Added Geometry library
+	* Added animated ajax progress indicator for <a>++
+	* Added auto-arranging algorithm for svgsparql
+	* Added Formdesigner iSPARQL integration
+	* OAT.Xmla now uses connection object
+	* Fixed OAT.Connection.toXML
+	* Fixed Documentation drag
+	* Fixed FormObject fromXML
+	* Removed need for toolkitPath
+	* Color grouping for svsparql
+	* Fixed Formdesigner
+	* Fixed broken mapping mashups
+
+2007-01-30 14:48  source
+
+	* Fixed QBE Owner filter
+	* Fixed QBE Pivot filter
+	* OAT.Xmla now uses connection object
+	* Fixed OAT.Connection.toXML
+
+2007-01-30 14:47  source
+
+	* OAT.xmla now uses connection object
+	* Fixed OAT.Connection.ToXML
+
+2007-01-30 14:46  source
+
+	* SVGSsparql redraw optimization
+	* QBE connector appearance fix
+
+2007-01-30 14:44  source
+
+	* Updated demos with new widgets
+	* Small fixes
+
+2007-01-30 14:43  source
+
+	* Added new images
+
+2007-01-30 14:42  source
+
+	* Added new image
+
+2007-01-26 14:04  source
+
+	* OAT.Xmla now uses connection object
+	* OAT.Connection.toXML fix
+
+2007-01-26 14:00  source
+
+	* Changed DAV panel design
+
+2007-01-26 14:00  source
+
+	* Simplified form handling
+
+2007-01-26 13:58  source
+
+	* No need for toolkitPath
+	* OAT.Xmla now uses connection object
+
+2007-01-26 13:57  source
+
+	* No need for toolkitPath
+
+2007-01-26 13:46  source
+
+	* Added new images
+
+2007-01-26 13:45  source
+
+	* Updated documentation
+
+2007-01-26 13:45  source
+
+	* Added new topics
+	* Fixed drag in documentation
+
+2006-12-13 13:11  source
+
+	* Updated version number to 2.0 for final release
+
+2006-12-13 13:10  source
+
+	* Added support for document.createElementNS() in IE
+
+2006-12-13 13:08  source
+
+	* Fix for SVG
+
+2006-12-13 13:08  source
+
+	* Fixed typo
+
+2006-12-13 13:02  source
+
+	* Fixed spelling
+
+2006-12-13 10:09  source
+
+	* Updated version to 2.0-rc2
+
+2006-12-13 10:09  source
+
+	* SVGSparql no longer needs OAT.Drag
+	* Added Ctrl-dragging on canvas
+
+2006-12-13 09:50  source
+
+	* Updated version to 2.0-rc1
+
+2006-12-13 09:47  source
+
+	* Added information about OpenLayers
+
+2006-12-13 09:44  source
+
+	* Added new features
+	* Fixed browser compliancy
+	* Fixed small bugs
+
+2006-12-13 09:42  source
+
+	* Rewrote Color, Calendar and Tree controls to use OOP interface instead
+	  of static method
+
+2006-12-13 09:36  source
+
+	* Updated Map APIs to newer version from Google, Microsoft and Yahoo
+
+2006-12-13 09:34  source
+
+	* Updated documentation with latest enhancements
+
+2006-12-13 09:30  source
+
+	* Added showcases for new functionality
+	* Changed calling method for Calendar and Color widgets
+	* Fixed small bugs
+
+2006-12-13 09:25  source
+
+	* Use new dependency loader
+
+2006-12-13 09:24  source
+
+	* Added DOM widget
+	* Added small toolkit functions
+	* Fixed dependency list
+	* Rewrote dependency loader
+
+2006-12-13 08:52  source
+
+	* Removed old code
+
+2006-12-13 08:51  source
+
+	* Removed old images
+
+2006-12-13 08:49  source
+
+	* Added new controls and related files
+
+2006-12-13 08:37  source
+
+	* Renamed toolkit to oat
+
+2006-11-28 10:40  source
+
+	* Renamed directories in preparation of new version
+
+2006-11-28 10:32  source
+
+	* Renamed toolkit to oat
+
+2006-11-28 10:27  source
+
+	* Renamed oat to demo
+
+2006-08-14 12:57  source
+
+	* Remove old Dav_old class
+	* Changed some Dav methods to handle methods from Dav_old class.
+	* Changed applications to stop use Dav_old class.
+	* Added new methods (for simplified usage of DavBrowser)
+	          o getFileName()
+	          o getFile()
+	          o saveFile()
+
+2006-08-07 10:41  source
+
+	* Initial release of the OpenLink Ajax Toolkit (OAT)
+

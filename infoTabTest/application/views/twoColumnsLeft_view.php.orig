@@ -1,0 +1,46 @@
+    <?php
+echo "<div id='".$name."' class='tab_content'>";
+//echo "dos columnas izquierda";
+echo '
+<div class="Column1L"><!-- START Portlet Column 1 -->
+	<div  class="portletSmall portlet1Column1"><!-- START Porlets of column 1 -->
+	   <span class="portletHeader" style="float: left;">
+	       <h4>Ventas Por Rubro y Actividad Ej 2012</h4>
+	   </span>
+	   <div class="portletContent" style="float: left;" id="'.$name.'_barChart1.1"> </div>
+	</div>
+<!-- Container of gchart-->
+	<div  class="portletSmall portlet2Column1"><!-- START Porlets of column 1 -->
+	   <span class="portletHeader" style="float: left;">
+	       <h4>Objetivo de Ventas</h4>
+	   </span>
+	   <div class="portletContent" style="float: left;" id="'.$name.'_barChart1.2"> </div>
+	</div>
+<!-- Container of gchart-->
+	
+<!-- Container of gchart--> 
+</div>
+<!-- END Portlet Column 1 --><!-- START Portlet Column 2 -->
+<div class="Column2L">
+	<div  class="portletSuper portlet1Column2">
+		 <span class="portletHeader" style="float: left;">
+			<h4>Monitoreo de Ejecucion Obra Misiones en Miles de $</h4>
+		</span>
+		<div class="portletContent" style="float: left;" id="'.$name.'_barChart2.1"></div>
+	</div>
+	<div  class="portletSuper portlet2Column2"> 
+		<span class="portletHeader" style="float: left;">
+			<h4></h4>
+		</span>
+		<div class="portletContent" style="float: left;" id="'.$name.'_barChart2.2"> </div>
+	</div>
+	<div class="portletSuper portlet3Column2"> 
+		<span class="portletHeader" style="float: left;">
+			<h4></h4>
+		</span>
+		<div class="portletContent" style="float: left;" id="'.$name.'_barChart2.3"> </div>
+	</div>
+</div>';
+
+
+echo" </div>";

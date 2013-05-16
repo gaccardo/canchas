@@ -1,0 +1,91 @@
+    <?php
+
+echo "<div id='".$name."' >";
+//echo"tres columas";
+echo' <div class="row-fluid">
+<!--Tabs1-->
+<div class="span12">
+	<div class="portletColumn1"><!-- START Portlet Column 1 -->
+		<div  class="portletSmall portlet1Column1"><!-- START Porlets of column 1 -->
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+				<h4></h4>
+			</span>
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart1.1">
+					<table id="'.$name.'_barChart1_1Table"></table>
+			 </div>
+		</div>
+		<!-- Container of gchart-->
+		<div class="portletSmall portlet2Column1"><!-- START Porlets of column 1 -->
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+				<h4></h4>
+			</span>
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart1.2">
+					<table id="'.$name.'_barChart1_2Table"></table>
+			 </div>
+		</div>
+		<!-- Container of gchart-->
+		<div  class="portletSmall portlet3Column1"><!-- START Porlets of column 1 -->
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+				<h4></h4>
+			</span>
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart1.3">
+					<table id="'.$name.'_barChart1_3Table"></table>
+			 </div>
+		</div>
+		<!-- Container of gchart--> 
+	</div>
+<!-- END Portlet Column 1 --><!-- START Portlet Column 2 -->
+	<div class="portletColumn2">
+		<div  class="portletSuper portlet1Column2"> 
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+			   <h4></h4>
+			</span>
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart2.1">
+				<table id="'.$name.'_barChart2_1Table"></table>
+			</div>
+		</div>
+		<div class="portletSuper portlet2Column2"> 
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+				<h4></h4>
+			</span>
+			
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart2.2">
+			
+					<table id="'.$name.'_barChart2_2Table"></table>
+			 </div>
+		</div>
+	</div>
+<!-- END Portlet Column 2 -->
+<!-- START Portlet Column 3 -->
+	<div class="portletColumn3"><!-- START "Portfolio" Portlet -->
+		<div  class="portletSmall portlet1Column3"><!-- START Porlets of column 1 -->
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+				<h4></h4>
+			</span>
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart3.1">
+				<table id="'.$name.'_barChart3_1Table"></table>
+			 </div>
+		</div>
+	<!-- Container of gchart-->
+		<div  class="portletSmall portlet2Column3"><!-- START Porlets of column 1 -->
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+				<h4></h4>
+			</span>
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart3.2">
+				<table id="'.$name.'_barChart3_2Table"></table>
+			 </div>
+		</div>
+	<!-- Container of gchart-->
+		<div  class="portletSmall portlet3Column3"><!-- START Porlets of column 1 -->
+			<span class="portletHeader btn btn-large btn-block btn-primary" style="float: left;">
+				<h4></h4>
+			</span>
+			<div class="portletContent" style="float: left;" id="'.$name.'_barChart3.3"> 
+				<table id="'.$name.'_barChart3_3Table"></table>
+			</div>
+		</div>
+	<!-- Container of gchart--> 
+	</div>
+</div>';
+echo" </div></div>";
+

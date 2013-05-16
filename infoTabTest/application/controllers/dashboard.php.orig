@@ -1,0 +1,111 @@
+<?php
+     if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+    include_once("users.php");
+     session_start();
+class Dashboard extends CI_Controller {
+
+   var $logedUser;
+   
+    public function index()
+    {
+          $this->load->helper(array('url','form'));
+         
+         if($this->session->userdata('userData')){
+            $logedUser  = $this->session->userdata('userData');
+           $usuario = new Users();
+           $userName = $usuario->setUpUser($logedUser['usuario'],$logedUser['pass']);
+           $userAcces   = $usuario->getAcces();
+           $groups      = $usuario->getGroups();
+           $subGroups      = $usuario->getSubGroups();
+           $data['user']      = $usuario->user;
+           $data['title']     = "Dashboards";
+           $this->load->view('internalHeader_view',$data);
+           $data['groups']    = $groups;
+           $data['subGroups']    = $subGroups;
+           $data['acces']      = $userAcces;
+         
+         //open the dashboard container
+             $this->load->view('dashboard_container_view',$data);
+            $this->load->view('defaultDashboard_view',$data);
+            $this->load->view('dashboard_close_view',$data);
+        }else{
+            //Die('no se logeo');
+           //If no session, redirect to login page
+           redirect('login', 'refresh');
+         }
+        
+          
+            
+      
+    }
+    function __construct(  ) {
+         parent::__construct();
+        
+    }
+    /*function __destruct(){
+        parent::__destruct();
+    }*/
+    
+    function showTabs($link){
+        if ($link!='') {
+            $this->load->helper(array('url','form'));
+         
+            if($this->session->userdata('userData')){
+                $logedUser  = $this->session->userdata('userData');
+               $usuario = new Users();
+               $userName = $usuario->setUpUser($logedUser['usuario'],$logedUser['pass']);
+              
+               $userAcces   = $usuario->getAcces();
+               $groups      = $usuario->getGroups();
+               $subGroups      = $usuario->getSubGroups();
+               $data['user']      = $usuario->user;
+               $data['title']     = "Dashboards";
+               $this->load->view('internalHeader_view',$data);
+               $data['groups']    = $groups;
+               $data['subGroups']    = $subGroups;
+               $data['acces']      = $userAcces;
+             //cargo las tabs para ese link 
+                $tabs  = $usuario->getTabs($link); 
+                $tabCharts  = $usuario->getChartsTab($link); 
+                $data['templates'] = $tabs; 
+               
+             //open the dashboard container
+                $this->load->view('dashboard_container_view',$data);
+                $data['functions_charts'] =  array();
+            //var_dump($tabs);
+                foreach( $tabs as $tab ){
+                          $functions =  array();
+                     //  $data['functions_charts'] =  array();
+                    foreach ($tabCharts as $chart) {
+                            if ($tab->idTab==$chart->idTab) {
+			//getChartGdocs('VentasActividad','URLVentasActividad','vacio','barChart1.1');
+$functionChart	= $chart->chartFunction."('".$chart->chart."','".$chart->connection."','".$chart->scriptSql."','".$chart->divToChart."','".$chart->chartTable."');";
+                                 $functions[]    = $functionChart;
+                              $data['functions_charts']   = $functions;
+                        }else{
+                                
+                            }
+                        }
+                    $dato['name'] = $tab->nombre;
+                    //load the template
+                    $this->load->view($tab->template."_view",$dato);
+                }
+        
+        //close the dashboard container
+                $this->load->view('dashboard_close_view',$data);
+         }else{
+            //Die('no se logeo');
+           //If no session, redirect to login page
+           redirect('login', 'refresh');
+         }
+        
+        
+        } else {
+           redirect('dashboard', 'refresh'); 
+        }
+        
+       
+    
+    }
+}
+?>

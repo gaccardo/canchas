@@ -1,0 +1,119 @@
+March 20 2008, V2.8:
+  * Use relative paths within source tree
+  * Added new RDF browser app
+  * Enhanced a++ API
+  * Enhanced Anchor API
+  * Enhanced Dereference API
+  * Enhanced Grid API
+  * Enhanced Notify API
+  * Enhanced RDFstore and RDFtabs APIs
+  * Enhanced Tagcloud API
+  * Enhanced Timeline API
+  * Enhanced Tree API
+  * Enhanced WebDav API
+  * Enhanced Win API
+  * Enhanced iSPARQL and RDFBrowser apps
+  * Updated google map API
+  * Updated demos to use new APIs
+  * Updated documentation
+  * Fixed small bugs
+
+December 04 2007, V2.7:
+  * Added new OAT.Win 
+  * Added .LDR loader support for isparql
+  * Added support for OAI protocol
+  * Added more demos
+  * Enhanced a++ links/styles
+  * Enhanced RDFbrowser and iSPARQL apps
+  * Enhanced UI
+  * Fixed URI parsing
+  * Fixed N3 proxy support
+  * Fixed loading path
+  * Fixed parsing month in timeline control
+  * Fixed piechart drawing speeds
+  * Fixed small bugs
+
+July 31 2007, V2.6:
+  * Added new JavasScript based Fresnel/RDF processor.
+  * Rewrite of iSPARQL application, optimizing for speed and code size
+  * Added support for SPARQL INSERT and DELETE features to iSPARQL app
+  * Enhanced N3/Turtle parser
+  * Added OAT.Notify widget
+  * Added OAT.Slidebar widget
+  * Support for Plurals in RDFB Navigator
+  * Several RDF Browser fixes & enhancements
+  * Fixed small bugs
+
+June 27 2007, V2.5:
+  * Added iSPARQL, an SVG-based SPARQL query tool
+  * Added Navigator visualization to RDF browser
+  * Added mini version of RDF browser suitable for Docked environments
+  * Added RDF browser store
+  * Added N3/Turtle parser
+  * Added abortable AJAX calls
+  * Added throbber animations in WebDAV tree
+  * Added API OAT.instant, OAT.Tagcloud
+  * Added halfminute step to timeline
+  * Rewrote Grid widget including column auto-size and better browser 
+    compatibility
+  * Fixed small bugs
+
+May 21 2007, V2.4:
+  * Enhanced RDF browser with image tab, navigation tab, search,
+    complete permalinks and geocoding.
+  * Enhanced DAV browser with permissions, owner and group
+  * Added support for GET/JSON security
+  * Added new API OAT.Event, OAT.Browser and OAT.Style
+  * Added rich XML library with XSLT parameters and XML serialization
+  * Increased SVG performance
+  * Increased performance loading windowing subsystem
+  * Added tab undocking
+  * Added dragging indicators for Tree
+  * Added dots in OAT.Tree
+  * Rewrote combo widgets
+
+March 20 2007, V2.3:
+  * Added RDF Browser tabs
+  * Added RDF Browser timeline and map
+  * Added Pivot table hiding empty rows/cols
+  * Added Pivot table totals and subtotals
+  * Added Pivot totals charts
+  * Added DESCRIBE and exception handling support to sparql
+  * Fixed small bugs
+
+February 23 2007, V2.2:
+  * Added new OAT.AJAX interface for simpler and faster access to frequent
+    Ajax calls
+  * Flash control in Formdesigner
+  * Better RDF parsing compatibility
+  * Overall enhancements in RDF Browser: sorting, grouping, rdf drilldown
+  * RDF Browser URL navigation
+  * Treeview in Formdesigner's palette
+  * Updated documentation
+  * Fixed small bugs
+
+January 31 2007, V2.1:
+  * Added RDF browser widget
+  * Added RDF Graph sidebar
+  * Added RSS reader
+  * Added Geometry API
+  * Enhanced SVGSparql functionality
+  * Enhanced Tree, Animation, Dom, Dock, Anchor
+  * Improved browser support
+  * Improved RDF triple parsing speed
+  * Integrated iSPARQL in Formdesigner
+  * Changed OAT.Xmla from static method to object
+  * Updated documentation
+  * Fixed small bugs
+
+December 13 2006, V2.0:
+  * Added new functions to toolkit
+  * Added new functionality to existing toolkit
+  * Improved browser support
+  * Improved loading speed
+  * Changed Calendar, Color and Tree from static method to object
+  * Changed directory structure
+  * Fixed small bugs
+
+August 07 2006, V1.0:
+  * Initial release

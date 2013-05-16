@@ -1,0 +1,1104 @@
+         
+ 
+ <!--hit area2 close -->
+ </div>
+ 
+ <!--inner close
+ </div>-->
+ <!--tab_container close-->
+      </div>
+<!--content close-->
+</div>
+
+<br clear="both" />
+    <footer>
+    <div style="overflow:hidden;align:center;" align="center">
+        
+        <!--<div class="copyright">--><p>Copyright &copy; 2012 Infocentro-Sistemas.&nbsp;&nbsp;&nbsp;
+            Website by <a style="font-size:12px;" href="http://www.ehead.com.ar" target="_blank">Ehead-Systems</a></p>
+        <!--</div>-->
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+			<img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="¡CSS Válido!" />
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="¡CSS Válido!" />
+</a>
+			</a>
+    </div>
+    </footer>
+
+<!-- END Footer -->
+<script type="text/javascript">
+
+ $(document).ready(function() {
+
+//Cuando el sitio carga...
+
+$(".tab_content").hide(); //Esconde todo el contenido
+
+$("ul.tabs li:first").addClass("active").show(); //Activa la primera tab
+
+$(".tab_content:first").show(); //Muestra el contenido de la primera tab
+
+//On Click Event
+
+$("ul.tabs li").click(function() {
+
+    $("ul.tabs li").removeClass("active"); //Elimina las clases activas
+
+    $(this).addClass("active"); //Agrega la clase activa a la tab seleccionada
+
+    $(".tab_content").hide(); //Esconde todo el contenido de la tab
+
+    var activeTab = $(this).find("a").attr("href"); //Encuentra el valor del atributo href para identificar la tab activa + el contenido
+
+    $(activeTab).fadeIn(); //Agrega efecto de transición (fade) en el contenido activo
+    //$(activeTab).css('display','block');
+    return false;
+
+});
+
+
+
+function getChart(chart,dataSource,sql,div,table,titulo,redibuja,tabDD,tooltipText){
+	if(redibuja==true){
+	}else{
+		var toolId	= div.replace('.', "_");
+		var padre = document.getElementById(div).parentNode;
+		var reloadImg = "<img src='<?= base_url() .APPPATH ?>images/gtk-refresh.png' alt='reload' name='getChart,"+chart+","+dataSource+","+sql+","+div+","+table+","+titulo+"' class='reload' height='16' width='16' style='float: right; cursor: pointer;' >";
+
+		var img = "<img src='<?= base_url() .APPPATH ?>images/printIco.png' alt='Imprimir' class='printImage' height='16' width='16' style='float: right; cursor: pointer;'>";
+		var plusImg	= "<img src='<?= base_url() .APPPATH ?>images/uArrow.png' alt='mas' class='msg_head' height='16' width='16' style='float: right; cursor: pointer;'>";
+		if(tabDD!=''){
+			var drillWownImg = "<img src='<?= base_url() .APPPATH ?>images/drillDown.png' onclick='go(\""+tabDD+"\");' height='16' width='16' style='float: left; cursor: pointer;' >";   
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div>"+drillWownImg+"<h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}else{
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div><h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}
+	}
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+	
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';//'get_chart_data/completionChart';
+    $.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+			var arrJson = [];
+            arrJson = json.split('|');   
+            options = arrJson[0];
+            source  = arrJson[1];
+            tipo    = arrJson[2];
+            consulta    = arrJson[3];
+            grafico	= arrJson[4];
+           	if( grafico=='' ){
+				grafico	= 'google.visualization.BarChart';
+			}
+            google.setOnLoadCallback(function(){ drawInteligentChart(options,tipo,source,consulta,grafico,div,chart,table) });
+		}
+	});
+	
+    //test con opciones
+      //  google.setOnLoadCallback(function(){ drawInteligentChart(options,tipo,source,consulta,grafico,div,chart) });
+    function drawInteligentChart(options,tipo,source,consulta,grafico,div,chart,table) {
+        var doLoginMethodUrl =  '<? echo site_url("get_json_data");?>';//'get_json_data';
+        var JsonData = $.ajax({
+        	type: "POST",
+        	data: {tipo: tipo,datasource: source,sql:consulta,chart:chart,table:table},
+        	async: false,
+         	url:doLoginMethodUrl,
+          //url:'../application/xhr/get_json_data_test.php?tipo='+tipo+'&datasource='+source+'&sql='+consulta+'&chart='+chart,
+          dataType:"json",
+          async: false
+        }).responseText;
+        var data = new google.visualization.DataTable(JsonData);
+        var obj	= getOptionsObjets(options);
+        
+       // var option = {backgroundColor:'#ccc',chartArea:{left:20,top:0,width:"50%",height:"75%"},fontSize:'10',fontName:'Arial',height:'300',isStacked:true,legend:{position: 'top', textStyle: {color: 'blue', fontSize: 8}},title:'Chart de test',titlePosition:'out',titleTextStyle:{color: 'black', fontName: 'Arial', fontSize: '14'},vAxis:{title: 'Hello', titleTextStyle: {color: '#FF0000'}},width:'300'}
+        //alert(option['chartArea'].left);
+       	//alert(obj['chartArea'].left);    
+		grafico = grafico.trim();
+        switch(grafico){
+			case 'google.visualization.BarChart':
+				var chart = new google.visualization.BarChart(document.getElementById(div));
+                chart.draw(data, obj);
+			break;
+			case 'google.visualization.DataTable':
+				var table = new google.visualization.Table(document.getElementById(div));
+                table.draw( data, obj); 
+			break;
+			case 'google.visualization.PieChart':
+				var chart = new google.visualization.PieChart(document.getElementById(div));
+                chart.draw( data, obj); 
+			break;
+			case 'google.visualization.ColumnChart':
+				var chart = new google.visualization.ColumnChart(document.getElementById(div));
+                chart.draw(data, obj);
+			break;
+		}
+       
+    }
+    /*usando el tooltip de twitter*/
+				var op	= {content:"<span style='color:#000;'>"+tooltipText+"</span>",
+							trigger:'hover',
+							placement:'top',
+							title:"<span style='color:#000;'><h4>Infotab<h4></span>",
+							html:true
+						};
+						
+				$('#'+toolId).popover(op);
+				/*usando el tooltip de twitter*/
+    //
+}
+String.prototype.trim= function() {//Agrega la función trim al objeto String
+   return this.replace(/(^\s*)|(\s*$)/g,""); //elimina espacios a izquierda y derecha
+}
+
+function getChartGdocs(chart,dataSource,sql,div,table,titulo,redibuja,tabDD,tooltipText){
+	if(redibuja==true){
+	}else{
+		var toolId	= div.replace('.', "_");
+		//alert(toolId);
+		var padre = document.getElementById(div).parentNode;
+		var reloadImg = "<img src='<?= base_url() .APPPATH ?>images/gtk-refresh.png' alt='reload'  name='getChartGdocs,"+chart+","+dataSource+","+sql+","+div+","+table+","+titulo+"' class='reload' height='16' width='16' style='float: right; cursor: pointer;' >";
+		var img = "<img src='<?= base_url() .APPPATH ?>images/printIco.png' alt='Imprimir' class='printImage' height='16' width='16' style='float: right; cursor: pointer;'>";
+		var plusImg	= "<img src='<?= base_url() .APPPATH ?>images/uArrow.png' alt='mas' class='msg_head' height='16' width='16' style='float: right; cursor: pointer;'>";
+		
+		if(tabDD!=''){
+			var drillWownImg = "<img src='<?= base_url() .APPPATH ?>images/drillDown.png' onclick='go(\""+tabDD+"\");' height='16' width='16' style='float: left; cursor: pointer;' >";   
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style='padding-top:0.5%;float:right;' >"+reloadImg+plusImg+img+"</div>"+drillWownImg+"<h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}else{
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style='padding-top:0.5%;float:right;' >"+reloadImg+plusImg+img+"</div><h3 id='"+toolId+"' >"+titulo+"</h3>";
+		}
+
+	}
+	
+	 var options;//={};
+		var source="";
+		var tipo="";
+		var consulta="";
+		var grafico="";
+		var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';//'get_chart_data/completionChart';
+        $.ajax({
+            type: "POST",
+            async: false,
+             url:doLoginMethodUrl,
+            data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+			success: function(json)
+			{
+				var arrJson = [];
+				arrJson = json.split('|');   
+				options = arrJson[0];
+				source  = arrJson[1];
+				var arrSource	= source.split(',');
+				var urlSpreadsheet	= arrSource[0];
+				tipo    = arrJson[2];
+				consulta    = arrJson[3];
+				grafico	= arrJson[4];
+				var opciones	= getOptionsObjets(options);//DESCOMENTAR ESTOOOO:::
+				var wrapper = new google.visualization.ChartWrapper({
+					dataSourceUrl: urlSpreadsheet,
+					chartType: grafico,
+					options:opciones,
+					containerId: div
+				});
+				wrapper.draw();
+			}
+
+		});
+		/*usando el tooltip de twitter*/
+				var op	= {content:"<span style='color:#000;'>"+tooltipText+"</span>",
+							trigger:'hover',
+							placement:'top',
+							title:"<span style='color:#000;'><h4>Infotab<h4></span>",
+							html:true
+						};
+						
+				$('#'+toolId).popover(op);
+				/*usando el tooltip de twitter*/
+}
+function handleQueryResponse(response,options,grafico) {
+	  if (response.isError()) {
+		alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+		return;
+	  }
+	
+}
+
+function getOptionsObjets(options){
+
+		//to get the options
+		
+        //divido cada property que viene con ;
+        var properties = options.split(';');
+		var obj = {};
+		var arr = [];
+        //itero dentro de cada tupla separada por ";"
+		properties.forEach(function(property) {
+            //divido la tupla en label y valor mediante ":"
+			var tup = property.split(':');
+			var remplazo	= tup[1];
+            //busco si tiene = el valor es porque adentro hay otro {label:value} si da -1 no esta
+            pos = remplazo.indexOf(",");
+            tup[0] = tup[0].replace(/_/g, ".");
+            //alert(tup[0]);
+            if( pos>0 ){
+                var values  = {};
+                //puede que el valor tenga adentro opciones separadas por ","
+                var valores = remplazo.split(',');
+                //itero cada tupla de valor que adentro contiene label=valor nuevamente
+                valores.forEach(function(val) {
+                    var aux = val.split('=');
+                    //cargo el arreglo de valores para la tupla superior
+                    var label   = aux[0];
+                    values[label]=aux[1];
+                    //alert(values[label]);
+                    //cargo la tupla en el objeto de opciones
+                   // obj[tup[0]] = values;
+                });obj[tup[0]] = values;
+            }else{
+                pos2    = remplazo.indexOf("=");
+                if(pos2>0){
+                    var values  = {};
+                    //puede que el valor tenga adentro una sola tupla label=valor
+                    var aux = remplazo.split('=');
+                    //cargo el arreglo de valores para la tupla superior
+                    var label   = aux[0];
+                    values[label]=aux[1];
+                    obj[tup[0]] = values;
+                }else{
+                    //si la primer tupla dividida no tiene tuplas adentro la almaceno directamente en opciones
+                    var r   = remplazo.trim();
+                    obj[tup[0]] = r;
+                }
+                
+            }
+                        			
+		});
+		return obj;
+		//options
+	
+}
+/*funcion para grillas
+ si es grupoing grid usa json y si es gridwithsubgrid usa xml
+ * */
+
+ /*por ahora la comento*/
+function getGroupingGrid(chart,dataSource,sql,div,table,titulo,redibuja,tabDD,tooltipText){
+	if(redibuja==true){
+	}else{
+		var toolId	= div.replace('.', "_");
+		var padre = document.getElementById(div).parentNode;
+		var reloadImg = "<img src='<?= base_url() .APPPATH ?>images/gtk-refresh.png' alt='reload' name='getGroupingGrid,"+chart+","+dataSource+","+sql+","+div+","+table+","+titulo+"' class='reload' height='16' width='16' style='float: right; cursor: pointer;' >";
+
+		var img = "<img src='<?= base_url() .APPPATH ?>images/printIco.png' alt='Imprimir' class='printImage' height='16' width='16' style='float: right; cursor: pointer;'>";
+		var plusImg	= "<img src='<?= base_url() .APPPATH ?>images/uArrow.png' alt='mas' class='msg_head' height='16' width='16' style='float: right; cursor: pointer;'>";
+		if(tabDD!=''){
+			var drillWownImg = "<img src='<?= base_url() .APPPATH ?>images/drillDown.png' onclick='go(\""+tabDD+"\");' height='16' width='16' style='float: left; cursor: pointer;' >";   
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div>"+drillWownImg+"<h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}else{
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div><h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}
+	}
+	
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+	var colModel	= "";
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';
+    var divToTable	= "";
+    $.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+           /*primero dibujo la tabla*/
+          
+            var arrJson = [];
+            arrJson = json.split('|');   
+            options = arrJson[0];
+            source  = arrJson[1];
+            tipo    = arrJson[2];
+            consulta    = arrJson[3];
+            colModel	= arrJson[5];
+            colName		= arrJson[6];
+			
+          dibujameLaTabla(options,colModel,div,colName,tipo,source,consulta,grafico,chart);
+        }
+        
+    });
+    /*usando el tooltip de twitter*/
+				var op	= {content:"<span style='color:#000;'>"+tooltipText+"</span>",
+							trigger:'hover',
+							placement:'top',
+							title:"<span style='color:#000;'><h4>Infotab<h4></span>",
+							html:true
+						};
+						
+				$('#'+toolId).popover(op);
+				/*usando el tooltip de twitter*/
+    
+}
+
+/*
+ESTA FUNCION ESTA ANDANDO JOYA SIN OPCIONES DE GROUPING
+function getOptionsGrid(options){
+
+	//to get the options
+		var cadenaOp = '';
+        //divido cada property que viene con ;
+        var properties = options.split(';');
+		var obj = {};
+		var arr = [];
+        //itero dentro de cada tupla separada por ";"
+		properties.forEach(function(property) {
+            //divido la tupla en label y valor mediante ":"
+			var tup = property.split(':');
+			var remplazo	= tup[1];
+            //obj[tup[0]] = remplazo;
+            pos2    = remplazo.indexOf("=");
+			if(pos2>0){
+				remplazo = remplazo.replace(/=/g, ":");
+				//obj[tup[0]] = values;
+			}else{
+				//si la primer tupla dividida no tiene tuplas adentro la almaceno directamente en opciones
+				//var r   = remplazo.trim();
+				//obj[tup[0]] = r;
+			}
+			obj[tup[0]] = remplazo;
+			cadenaOp += tup[0]+":"+remplazo+",";
+            //alert(cadenaOp);
+                        			
+		});
+		//return cadenaOp;
+		return obj;
+		//options
+	
+}*/
+function getOptionsGrid(options){
+
+        //divido cada property que viene con ;
+        var properties = options.split(';');
+		var obj = {};
+		var arr = [];
+        //itero dentro de cada tupla separada por ";"
+		properties.forEach(function(property) {
+            //divido la tupla en label y valor mediante ":"
+			var tup = property.split(':');
+			var remplazo	= tup[1];
+            //los rowlist es un arreglo por eso lo cargo asi
+            if(tup[0]=='rowList'){
+				var row = [];
+				var i = 0;
+				var lista = remplazo.split(',');
+				lista.forEach(function(item) {
+					row[i]=item;
+					i++;
+					});
+				
+				obj[tup[0]]=row;
+			}else{
+				//busco si adentro hay mas tuplas para crear los arrays respectivos
+				pos = remplazo.indexOf(",");
+				//si el campo tiene un "_" lo reemplazo por "."
+				tup[0] = tup[0].replace(/_/g, ".");
+				//alert("el campo es "+tup[0]+" valor= "+remplazo);
+				
+				if( pos>0 ){
+					var values  = {};
+					//puede que el valor tenga adentro opciones separadas por ","
+					var valores = remplazo.split(',');
+					//itero cada tupla de valor que adentro contiene label=valor nuevamente
+					//obj[tup[0]]	= '{';
+					valores.forEach(function(val) {
+						var aux = val.split('=');
+						//cargo el arreglo de valores para la tupla superior
+						//alert(aux[0]);
+						var label   = aux[0];
+						var dato	= new Array();
+						//alert('antes del case:'+label);
+						label	= label.trim();
+						var auc	= aux[1].trim();
+						switch(label){
+							case "groupField":
+								dato[0]=auc;
+								values[label]=dato;
+							break;
+							case "groupColumnShow":
+								if(auc=='true'){dato[0]=true;}else{dato[0]=false;}
+								values[label]=dato;
+								
+							break;
+							case "groupText":
+								dato[0]=auc;
+								values[label]=dato;
+								
+							break;
+							case "groupCollapse":
+								if(auc=='true'){values[label]=true;}else{values[label]=false;}
+								
+							break;
+							case "groupOrder":
+								dato[0]=auc;
+								values[label]=dato;
+						 	break;
+							case "groupSummary":
+								if(auc=='true'){dato[0]=true;}else{dato[0]=false;}
+								values[label]=dato;
+							break;
+							case "showSummaryOnHide":
+								if(auc=='true'){values[label]=true;}else{values[label]=false;}
+									
+							break;
+							case "groupDataSorted":
+								if(auc=='true'){values[label]=true;}else{values[label]=false;}
+								
+							break;
+							}
+						
+						//alert('values['+label+']='+values[label]);
+						//alert('aux[1] ' +aux[1]);
+						
+					});
+				
+				  // obj[tup[0]]	+= '}';
+					obj[tup[0]] = values;
+				}else{
+					pos2    = remplazo.indexOf("=");
+					if(pos2>0){
+						var values  = {};
+						//puede que el valor tenga adentro una sola tupla label=valor
+						var aux = remplazo.split('=');
+						//cargo el arreglo de valores para la tupla superior
+						var label   = aux[0];
+						values[label]=aux[1];
+						obj[tup[0]] = values;
+					}else{
+						//si la primer tupla dividida no tiene tuplas adentro la almaceno directamente en opciones
+						var r   = remplazo.trim();
+						if(r=='true'){
+							obj[tup[0]] =true;
+						}else{
+							if(r=='false'){
+							obj[tup[0]] =false;
+							}else{
+								obj[tup[0]] = r;
+								}
+						}
+								
+						//obj[tup[0]] = r;
+					}
+					
+				}
+				//alert("obj["+tup[0]+"] "+obj[tup[0]]);	
+			}
+            
+            
+                        			
+		});
+		return obj;
+		//options
+	
+}
+function getColmodel(col_model){
+
+        //divido cada property que viene con ;
+        var properties = col_model.split(';');
+		var obj = [];
+		//itero dentro de cada tupla separada por ";"
+        i=0;
+        var cadenaFinal='';
+		properties.forEach(function(property) {
+			var arr = {};
+			var cadenaOp = '';
+            //divido la tupla en label y valor mediante ":"
+            var valores = property.split(',');
+            valores.forEach(function(val) {
+					var tup = val.split(':');
+					var remplazo	= tup[1];
+					
+                    arr[tup[0]] = remplazo;
+                    cadenaOp	+= tup[0]+':'+remplazo+'-';
+                    
+                });
+                
+           obj[i]   = arr;
+          i+=1;
+		});
+		
+		return obj;
+		//options
+	
+}
+function getColName(col_name){
+
+        //divido cada property que viene con ,
+        var properties = col_name.split(',');
+		var obj = [];
+		
+        i=0;
+        var cadenaFinal='';
+		properties.forEach(function(property) {
+			obj[i]   = property;
+			i+=1;
+		});
+		
+		return obj;
+		//options
+	
+}
+ function dibujameLaTabla(options,col_model,divTable,col_name,tipo,source,consulta,grafico,chart){
+	  var doLoginMethodUrl =  '<? echo site_url("get_json_grid");?>';
+	  //var opciones	= getOptionsObjets(options);
+	  
+	 var opciones	= getOptionsGrid(options);
+	 var modelo		= getColmodel(col_model);
+	 var names		= getColName(col_name);
+	 //reemplazo el . por un _ sino el js no funciona!!! fucking jqgrid!
+	 var toolId		= divTable.replace('.', "_");
+	 var txtDiv		= toolId+'Table';
+	jQuery.extend(jQuery.jgrid.defaults, opciones);
+	$('div.tab_content table').each(function(index) {//busco todas las tablas dentro de tab_content
+			var activeTab = $(this).attr("id");
+			if(activeTab==txtDiv){ //si es la tabla que busco le aplico la grilla
+				
+				$(this).jqGrid({
+					url: doLoginMethodUrl,                  // - webinvoke post method
+					postData: {tipo: tipo,datasource: source,sql:consulta,chart:chart},
+					search: true,
+					datatype: 'json',
+					mtype: 'POST',
+					loadonce: true,          
+					/*jsonReader : {
+						 root: "rows",
+						 page: "page",
+						 total: "total",
+						 records: "records",
+						 repeatitems: true,
+						 cell: "cell",
+						 id: "id"
+					   },*/
+					   
+					colNames:names,
+					colModel:modelo,
+					footerrow: false,
+					userDataOnFooter: false
+				});
+				//$(this).jqGrid('navGrid','.presult',{add:false,edit:false,del:false});
+				
+			}
+	});
+	
+	
+}
+function getTableGchart(chart,dataSource,sql,div,table,titulo,redibuja,tabDD,tooltipText){
+	if(redibuja==true){
+	}else{
+		var toolId	= div.replace('.', "_");
+		var padre = document.getElementById(div).parentNode;
+		var reloadImg = "<img src='<?= base_url() .APPPATH ?>images/gtk-refresh.png' alt='reload' name='getTableGchart,"+chart+","+dataSource+","+sql+","+div+","+table+","+titulo+"' class='reload' height='16' width='16' style='float: right; cursor: pointer;' >";
+
+		var img = "<img src='<?= base_url() .APPPATH ?>images/printIco.png' alt='Imprimir' class='printImage' height='16' width='16' style='float: right; cursor: pointer;'>";
+		var plusImg	= "<img src='<?= base_url() .APPPATH ?>images/uArrow.png' alt='mas' class='msg_head' height='16' width='16' style='float: right; cursor: pointer;'>";
+		if(tabDD!=''){
+			var drillWownImg = "<img src='<?= base_url() .APPPATH ?>images/drillDown.png' onclick='go(\""+tabDD+"\");' height='16' width='16' style='float: left; cursor: pointer;' >";   
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div>"+drillWownImg+"<h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}else{
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div><h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}
+	}
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+	var formaterCol	= "";
+	var formaterWidth = "";
+	var formatersColumns = "";
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';
+    $.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+			var arrJson = [];
+            arrJson 	= json.split('|');   
+            options		= arrJson[0];
+            source		= arrJson[1];
+            tipo    	= arrJson[2];
+            consulta    = arrJson[3];
+            grafico		= arrJson[4];
+            //formaterCol = arrJson[7];
+			//formaterWidth	= arrJson[8];
+			formatersColumns	= arrJson[9]; 
+			
+			//alert(formatersColumns);
+            google.setOnLoadCallback(function(){ drawTable(options,tipo,source,consulta,grafico,div,chart,table,formatersColumns) });
+		}
+	});
+	function drawTable(options,tipo,source,consulta,grafico,div,chart,table,formatersColumns) {
+        var doLoginMethodUrl =  '<? echo site_url("get_json_data");?>';
+        var JsonData = $.ajax({
+        	type: "POST",
+        	data: {tipo: tipo,datasource: source,sql:consulta,chart:chart,table:table},
+        	async: false,
+         	url:doLoginMethodUrl,
+            dataType:"json",
+          async: false
+        }).responseText;
+        var data = new google.visualization.DataTable(JsonData);
+        var obj	= getOptionsObjets(options);
+       
+		//formaterCol	= parseInt(formaterCol);
+		
+		//formaterWidth	= parseInt(formaterWidth);
+		var arrFormaters	= formatersColumns.split(';');
+		arrFormaters.forEach(function(property) {
+			var tup = property.split(',');
+			formaterCol	= parseInt(tup[0]);
+			formaterWidth	= parseInt(tup[4]);
+			var colornegative	= tup[1];
+			var colorpositive	= tup[2];
+			var showvalue		= tup[3];
+			showvalue			= showvalue.trim();
+			
+			if(showvalue=='true'){
+				var formatter = new google.visualization.TableBarFormat({width:formaterWidth,showValue:true,colorNegative:colornegative,colorPositive:colorpositive});
+			}else{
+				var formatter = new google.visualization.TableBarFormat({width:formaterWidth,showValue:false,colorNegative:colornegative,colorPositive:colorpositive});
+			}
+			
+			formatter.format(data,formaterCol);
+		});
+        	
+		// Create and draw the visualization.
+		visualization = new google.visualization.Table(document.getElementById(div));
+		visualization.draw( data, obj); 
+	}
+	/*usando el tooltip de twitter*/
+				var op	= {content:"<span style='color:#000;'>"+tooltipText+"</span>",
+							trigger:'hover',
+							placement:'top',
+							title:"<span style='color:#000;'><h4>Infotab<h4></span>",
+							html:true
+						};
+						
+				$('#'+toolId).popover(op);
+				/*usando el tooltip de twitter*/
+    //
+}
+/*tabla para gdocs*/
+function getTableGchartGdocs(chart,dataSource,sql,div,table,titulo,redibuja,tabDD,tooltipText){
+	if(redibuja==true){
+	}else{
+		var toolId	= div.replace('.', "_");
+		var padre = document.getElementById(div).parentNode;
+		var reloadImg = "<img src='<?= base_url() .APPPATH ?>images/gtk-refresh.png' alt='reload' name='getTableGchartGdocs,"+chart+","+dataSource+","+sql+","+div+","+table+","+titulo+"' class='reload' height='16' width='16' style='float: right; cursor: pointer;' >";
+
+		var img = "<img src='<?= base_url() .APPPATH ?>images/printIco.png' alt='Imprimir' class='printImage' height='16' width='16' style='float: right; cursor: pointer;'>";
+		var plusImg	= "<img src='<?= base_url() .APPPATH ?>images/uArrow.png' alt='mas' class='msg_head' height='16' width='16' style='float: right; cursor: pointer;'>";
+		if(tabDD!=''){
+			var drillWownImg = "<img src='<?= base_url() .APPPATH ?>images/drillDown.png' onclick='go(\""+tabDD+"\");' height='16' width='16' style='float: left; cursor: pointer;' >";   
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div>"+drillWownImg+"<h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}else{
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div><h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}
+	}
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+	var formaterCol	= "";
+	var formaterWidth = "";
+	var formatersColumns = "";
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';
+    $.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+			var arrJson = [];
+            arrJson 	= json.split('|');  
+            options		= arrJson[0];
+            source		= arrJson[1];
+            var arrSource	= source.split(',');
+			var urlSpreadsheet	= arrSource[0];
+			tipo    	= arrJson[2];
+            consulta    = arrJson[3];
+            grafico		= arrJson[4];
+            //formaterCol = arrJson[7];
+			//formaterWidth	= arrJson[8];
+			formatersColumns	= arrJson[9]; 
+			var opciones	= getOptionsObjets(options)
+			var arrFormaters	= formatersColumns.split(';');
+			
+			query = new google.visualization.Query(urlSpreadsheet);
+			query.send(handleQueryResponseTable);
+			
+			function handleQueryResponseTable(response) {
+			  if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+				}
+			
+				var data = response.getDataTable();
+				/*aplico los formtaters*/
+				arrFormaters.forEach(function(property) {
+				var tup = property.split(',');
+				formaterCol	= parseInt(tup[0]);
+				formaterWidth	= parseInt(tup[4]);
+				var colornegative	= tup[1];
+				var colorpositive	= tup[2];
+				var showvalue		= tup[3];
+				showvalue			= showvalue.trim();
+				
+					if(showvalue=='true'){
+						var formatter = new google.visualization.TableBarFormat({width:formaterWidth,showValue:true,colorNegative:colornegative,colorPositive:colorpositive});
+					}else{
+						var formatter = new google.visualization.TableBarFormat({width:formaterWidth,showValue:false,colorNegative:colornegative,colorPositive:colorpositive});
+					}
+				
+				formatter.format(data,formaterCol);
+				});
+				/*fin de formaters*/
+				visualization = new google.visualization.Table(document.getElementById(div));
+				visualization.draw( data, opciones); 	
+			}
+		
+		}
+		
+	});
+	/*usando el tooltip de twitter*/
+				var op	= {content:"<span style='color:#000;'>"+tooltipText+"</span>",
+							trigger:'hover',
+							placement:'top',
+							title:"<span style='color:#000;'><h4>Infotab<h4></span>",
+							html:true
+						};
+						
+				$('#'+toolId).popover(op);
+				/*usando el tooltip de twitter*/
+	
+}
+
+/*tabla para gdocs*/
+/*tabla con string filter*/
+function getTableStringFilter(chart,dataSource,sql,div,table,titulo,redibuja,tabDD,tooltipText){
+	if(redibuja==true){
+	}else{
+		var toolId	= div.replace('.', "_");
+		var padre = document.getElementById(div).parentNode;
+		var reloadImg = "<img src='<?= base_url() .APPPATH ?>images/gtk-refresh.png' alt='reload' name='getTableStringFilter,"+chart+","+dataSource+","+sql+","+div+","+table+","+titulo+"' class='reload' height='16' width='16' style='float: right; cursor: pointer;' >";
+		var img = "<img src='<?= base_url() .APPPATH ?>images/printIco.png' alt='Imprimir' class='printImage' height='16' width='16' style='float: right; cursor: pointer;'>";
+		var plusImg	= "<img src='<?= base_url() .APPPATH ?>images/uArrow.png' alt='mas' class='msg_head' height='16' width='16' style='float: right; cursor: pointer;'>";
+		if(tabDD!=''){
+			var drillWownImg = "<img src='<?= base_url() .APPPATH ?>images/drillDown.png' onclick='go(\""+tabDD+"\");' height='16' width='16' style='float: left; cursor: pointer;' >";   
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div>"+drillWownImg+"<h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}else{
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div><h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}
+
+	}
+	 document.getElementById(div).innerHTML = '<div id="control1'+div+'" class="filterContainer" style="width: 100%;margin: 5px;"></div><div class="tableContainer" style="float:left" id="chart1'+div+'"></div>';
+	 var options;//={};
+		var source="";
+		var tipo="";
+		var consulta="";
+		var grafico="";
+		var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';//'get_chart_data/completionChart';
+        $.ajax({
+            type: "POST",
+            async: false,
+             url:doLoginMethodUrl,
+            data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+			success: function(json)
+			{
+				var arrJson = [];
+				arrJson = json.split('|');   
+				options = arrJson[0];
+				source  = arrJson[1];
+				var arrSource	= source.split(',');
+				var urlSpreadsheet	= arrSource[0];
+				tipo    = arrJson[2];
+				consulta    = arrJson[3];
+				grafico	= arrJson[4];
+				filters = arrJson[7];
+				formatersColumns	= arrJson[9]; 
+				var arrFormaters	= formatersColumns.split(';');
+				/*funcion que va a dibujar con datos de json o spreadsheet*/
+				drawStringFilterTable(options,tipo,source,consulta,grafico,div,chart,table,arrFormaters,filters);
+				
+			}
+
+		});
+		function drawStringFilterTable(options,tipo,source,consulta,grafico,div,chart,table,arrFormaters,filters){
+				var doLoginMethodUrl =  '<? echo site_url("get_json_data");?>';
+				var JsonData = $.ajax({
+					type: "POST",
+					data: {tipo: tipo,datasource: source,sql:consulta,chart:chart,table:table},
+					async: false,
+					url:doLoginMethodUrl,
+				   dataType:"json",
+				  async: false
+				}).responseText;
+				var data = new google.visualization.DataTable(JsonData);
+				
+				/*aplico los formtaters*/
+				arrFormaters.forEach(function(property) {
+				var tup = property.split(',');
+				formaterCol	= parseInt(tup[0]);
+				formaterWidth	= parseInt(tup[4]);
+				var colornegative	= tup[1];
+				var colorpositive	= tup[2];
+				var showvalue		= tup[3];
+				showvalue			= showvalue.trim();
+				
+					if(showvalue=='true'){
+						var formatter = new google.visualization.TableBarFormat({width:formaterWidth,showValue:true,colorNegative:colornegative,colorPositive:colorpositive});
+					}else{
+						var formatter = new google.visualization.TableBarFormat({width:formaterWidth,showValue:false,colorNegative:colornegative,colorPositive:colorpositive});
+					}
+				
+				formatter.format(data,formaterCol);
+				});
+				/*fin de formaters*/
+				var arrFilter	= filters.split(',');
+				var containerFilter	= 'control1'+div;
+				var containerWrapper	= 'chart1'+div;
+				var opciones	= getOptionsObjets(options);
+				if(arrFilter[5]=='true'){
+					var typing	= true;
+					}else{
+						var typing	= false;
+					}
+				if(arrFilter[6]=='true'){
+					var multiple	= true;
+					}else{
+						var multiple	= false;
+					}
+				var stringFilter = new google.visualization.ControlWrapper({
+					'controlType': arrFilter[4],
+					'containerId': containerFilter,
+					'options': {
+					   'filterColumnLabel': arrFilter[0],
+					   'matchType':'any',
+						"ui": {"label": arrFilter[1],
+						"caption":"Seleccione",
+						"labelSeparator": arrFilter[2],
+						"labelStacking":arrFilter[3],
+						"allowTyping":typing,
+						"allowMultiple":multiple,
+						"selectedValuesLayout":arrFilter[7]} 
+					}
+				  });
+				var table = new google.visualization.ChartWrapper({
+					dataTable:data,
+					//dataSourceUrl: urlSpreadsheet,
+					chartType: 'Table',
+					options:opciones,
+					containerId:containerWrapper
+				});
+				 var dashboard = new google.visualization.Dashboard(document.getElementById(div)).
+				// Configure the string filter to affect the table contents
+				bind(stringFilter, table).
+				// Draw the dashboard
+				draw(data);
+				
+		}
+		/*usando el tooltip de twitter*/
+				var op	= {content:"<span style='color:#000;'>"+tooltipText+"</span>",
+							trigger:'hover',
+							placement:'top',
+							title:"<span style='color:#000;'><h4>Infotab<h4></span>",
+							html:true
+						};
+						
+				$('#'+toolId).popover(op);
+				/*usando el tooltip de twitter*/
+}
+/*fin tabla con string filter*/
+function getIframe(chart,dataSource,sql,div,table,titulo,redibuja,tabDD,tooltipText){
+	if(redibuja==true){
+	}else{
+		var toolId	= div.replace('.', "_");
+		var padre = document.getElementById(div).parentNode;
+		var reloadImg = "<img src='<?= base_url() .APPPATH ?>images/gtk-refresh.png' alt='reload' name='getIframe,"+chart+","+dataSource+","+sql+","+div+","+table+","+titulo+"' class='reload' height='16' width='16' style='float: right; cursor: pointer;' >";
+
+		var img = "<img src='<?= base_url() .APPPATH ?>images/printIco.png' alt='Imprimir' class='printImage' height='16' width='16' style='float: right; cursor: pointer;'>";
+		var plusImg	= "<img src='<?= base_url() .APPPATH ?>images/uArrow.png' alt='mas' class='msg_head' height='16' width='16' style='float: right; cursor: pointer;'>";
+		if(tabDD!=''){
+			var drillWownImg = "<img src='<?= base_url() .APPPATH ?>images/drillDown.png' onclick='go(\""+tabDD+"\");' height='16' width='16' style='float: left; cursor: pointer;' >";   
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div>"+drillWownImg+"<h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}else{
+			padre.getElementsByTagName('span')[0].innerHTML = "<div style=padding-top:0.5%;float:right;>"+reloadImg+plusImg+img+"</div><h3 id='"+toolId+"'>"+titulo+"</h3>";
+		}
+	}
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+    var iframe  = '<iframe ';   
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';
+    $.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+            var arrJson = [];
+            arrJson = json.split('|');   
+            options = arrJson[0];
+            arrOptions  = options.split(';');
+            arrOptions.forEach(function(property) {
+                       
+                var tup = property.split(':');
+                var tupi	= tup[1];
+                pos = tupi.indexOf("=");
+                if( pos>0 ){
+					tupi = tupi.replace("=",":"); 
+				}else{
+				
+				}
+                iframe += tup[0]+'="'+tupi+' "';
+            });
+            iframe += " style='border: 0 none;'/>"; 
+            document.getElementById(div).innerHTML = iframe;
+            
+           }
+            
+    });
+    /*usando el tooltip de twitter*/
+				var op	= {content:"<span style='color:#000;'>"+tooltipText+"</span>",
+							trigger:'hover',
+							placement:'top',
+							title:"<span style='color:#000;'><h4>Infotab<h4></span>",
+							html:true
+						};
+						
+				$('#'+toolId).popover(op);
+				/*usando el tooltip de twitter*/
+}
+function Imprimir(elemento)
+{
+    
+    var Ventana_Impresion = window.open(' ', 'popimpr');
+    Ventana_Impresion.document.write( elemento.innerHTML );
+    Ventana_Impresion.document.close();
+    Ventana_Impresion.print( );
+    Ventana_Impresion.close();
+}
+
+<?php
+if (count($functions_charts)>0) {
+	//var_dump($functions_charts);
+	foreach ($functions_charts as $fucion) {
+        
+    echo $fucion;
+    
+    }
+} else {
+	
+}
+
+?>
+   
+		  //hide or show the all of the element with class portletContent are the body of charts
+		  $(".portletContent").show();
+		  //toggle the componenet with class portletContent
+		  $(".msg_head").click(function()
+		  {
+			var padre = $(this).parent().get(0);
+			var abuelin = $(padre).parent().get(0);
+			$(abuelin).next(".portletContent").slideToggle(600);
+		  });
+			$('.msg_head').toggle(
+				function(){
+								
+					$(this).attr({ 
+					  src: "<?= base_url() .APPPATH ?>images/dArrow.png",
+					 
+					});
+
+				},
+				function(){
+					$(this).attr({ 
+					  src: "<?= base_url() .APPPATH ?>images/uArrow.png",
+					 
+					});
+
+				}
+			);
+				//print the content of div class portletContent
+            $( ".printImage" ).click(function(){
+				var padre = $(this).parent().get(0);
+				var abuelo	= $(padre).parent().get(0);
+				var viscaabuelo	= $(abuelo).parent().get(0);
+				Imprimir(viscaabuelo);
+				
+				});
+				function reload(funcionDibuja,chart,dataSource,sql,div,table,titulo){
+					//alert(funcionDibuja.toString()+'('+chart+','+dataSource+','+sql+','+div+','+table+','+titulo+')');
+					redibuja=true;
+					switch(funcionDibuja){
+						case 'getChartGdocs':
+							getChartGdocs(chart,dataSource,sql,div,table,titulo,redibuja);
+							break;
+						case 'getChart':
+							getChart(chart,dataSource,sql,div,table,titulo,redibuja);
+							break;
+						case 'getGroupingGrid':
+							getGroupingGrid(chart,dataSource,sql,div,table,titulo,redibuja);
+							break;
+						case 'getIframe':
+							getIframe(chart,dataSource,sql,div,table,titulo,redibuja);
+							break;
+						
+						}
+					return false;
+				}
+				
+				$( ".reload" ).click(function(){
+				var funcionDibujar	= $(this).attr('name');
+				var Datos = funcionDibujar.split(',');   
+				var funcion	= Datos[0];
+				chart = Datos[1];
+				dataSource= Datos[2];
+				sql=Datos[3];
+				div=Datos[4];
+				table=Datos[5];
+				titulo=Datos[6];
+				document.getElementById(div).innerHTML = '';
+				reload(funcion,chart,dataSource,sql,div,table,titulo);
+				return false;
+				});
+				/*$('td.google-visualization-table-td google-visualization-table-td-number span img').each(function(index) {//busco todas las tablas dentro de tab_content
+				
+					$(this).css('height', '12px');
+				});
+				*/
+          
+});
+</script>
+</div>
+    </body>
+</html>

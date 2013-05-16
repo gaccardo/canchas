@@ -1,0 +1,77 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Get_Chart_Data extends CI_Controller {
+
+    public function index()
+    {
+    
+    }
+	function completionChart(){
+	$chart     =  $_POST['chart'];
+      $table      = $_POST['table'];
+      $datasource = $_POST['datasource'];
+      $script     = $_POST['sql'];
+         //var_dump($_POST); 
+      $row = $this->obtainChart($chart,$table);
+      $rowdatasource  = $this->obtainDataSource($datasource);
+      $rowscript  = $this->obtainScript($script);
+	//var_dump($rowdatasource);
+       
+       $tipo   = $rowdatasource[0]->tipo;
+        
+        $noCols =  array("id", "cols", "tpo", "nombre");    
+        $tipoChart =   "tpo";        
+        $chartOptions   = '';
+       
+        $dataSource     = $rowdatasource[0]->string.','.$rowdatasource[0]->driver.','.$rowdatasource[0]->user.','.$rowdatasource[0]->passwd;
+      if($rowscript!=NULL){
+          $sql            = $rowscript[0]->consulta;
+      } else{
+          $sql            = "";
+      }
+        
+        foreach($row  as $k=>$v){
+            foreach ($v as $key => $value) {
+                if(in_array($key, $noCols )){
+               
+                    if($key==$tipoChart){
+                        $grafico    =   $value;
+                    }
+                 }else{
+                    if($value!='' || $value!=NULL){
+                     
+                        $chartOptions[] = $key.':'.$value;
+                    }
+                }
+            }
+              //var_dump($value);
+            
+        }
+       echo implode(";",$chartOptions).'|'.$dataSource.'|'.$tipo.'|'.$sql.'|'.$grafico;
+      
+  //var_dump($rowdatasource);
+	}
+    function __construct(  ) {
+         parent::__construct();
+       $this->load->model('chartdata_model','',TRUE); 
+    }
+    function obtainChart($chart,$table){
+      
+        if ($chart!='') {
+            $charts = $this->chartdata_model->getChart($chart,$table);
+        }else{
+            $charts = "";
+        }
+        return $charts; 
+        
+    }
+    
+    function obtainDataSource($datasource){
+         $dataSources =   $this->chartdata_model->getDataSource($datasource);
+         return $dataSources; 
+    }
+    function obtainScript($script){
+         $scripts =   $this->chartdata_model->getScript($script);
+        return $scripts; 
+    }
+}  

@@ -1,0 +1,325 @@
+         
+ 
+ <!--hit area2 close -->
+ </div>
+ 
+ <!--inner close
+ </div>-->
+ <!--tab_container close-->
+      </div>
+<!--content close-->
+</div>
+
+<br clear="both" />
+    
+    <div style="overflow:hidden;align:center;" align="center">
+        
+        <div class="copyright">Copyright &copy; 2012 Infocentro-Sistemas.&nbsp;&nbsp;&nbsp;
+            Website by <a style="font-size:12px;" href="http://www.ehead.com.ar" target="_blank">Ehead-Systems</a>
+        </div>
+            
+    </div>
+
+<!-- END Footer -->
+<script type="text/javascript">
+
+ $(document).ready(function() {
+
+//Cuando el sitio carga...
+
+$(".tab_content").hide(); //Esconde todo el contenido
+
+$("ul.tabs li:first").addClass("active").show(); //Activa la primera tab
+
+$(".tab_content:first").show(); //Muestra el contenido de la primera tab
+
+//On Click Event
+
+$("ul.tabs li").click(function() {
+
+    $("ul.tabs li").removeClass("active"); //Elimina las clases activas
+
+    $(this).addClass("active"); //Agrega la clase activa a la tab seleccionada
+
+    $(".tab_content").hide(); //Esconde todo el contenido de la tab
+
+    var activeTab = $(this).find("a").attr("href"); //Encuentra el valor del atributo href para identificar la tab activa + el contenido
+
+    $(activeTab).fadeIn(); //Agrega efecto de transición (fade) en el contenido activo
+    //$(activeTab).css('display','block');
+    return false;
+
+});
+
+
+
+function getChart(chart,dataSource,sql,div,table){
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+	/*jQuery.ajax({
+        type: "GET",
+        async: false,
+        url:'../application/xhr/get_chart_data.php?chart='+chart+'&datasource='+dataSource+'&sql='+sql,*/
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';//'get_chart_data/completionChart';
+    $.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+			var arrJson = [];
+            arrJson = json.split('|');   
+            options = arrJson[0];
+            source  = arrJson[1];
+            tipo    = arrJson[2];
+            consulta    = arrJson[3];
+            grafico	= arrJson[4];
+           	if( grafico=='' ){
+				grafico	= 'google.visualization.BarChart';
+			}
+            google.setOnLoadCallback(function(){ drawInteligentChart(options,tipo,source,consulta,grafico,div,chart) });
+		}
+	});
+	
+    //test con opciones
+      //  google.setOnLoadCallback(function(){ drawInteligentChart(options,tipo,source,consulta,grafico,div,chart) });
+    function drawInteligentChart(options,tipo,source,consulta,grafico,div,chart) {
+        var doLoginMethodUrl =  '<? echo site_url("get_json_data");?>';//'get_json_data';
+        var JsonData = $.ajax({
+        	type: "POST",
+        	data: {tipo: tipo,datasource: source,sql:consulta,chart:chart},
+        	async: false,
+         	url:doLoginMethodUrl,
+          //url:'../application/xhr/get_json_data_test.php?tipo='+tipo+'&datasource='+source+'&sql='+consulta+'&chart='+chart,
+          dataType:"json",
+          async: false
+        }).responseText;
+        var data = new google.visualization.DataTable(JsonData);
+        var obj	= getOptionsObjets(options);
+        
+       // var option = {backgroundColor:'#ccc',chartArea:{left:20,top:0,width:"50%",height:"75%"},fontSize:'10',fontName:'Arial',height:'300',isStacked:true,legend:{position: 'top', textStyle: {color: 'blue', fontSize: 8}},title:'Chart de test',titlePosition:'out',titleTextStyle:{color: 'black', fontName: 'Arial', fontSize: '14'},vAxis:{title: 'Hello', titleTextStyle: {color: '#FF0000'}},width:'300'}
+        //alert(option['chartArea'].left);
+       	//alert(obj['chartArea'].left);    
+		grafico = grafico.trim();
+        switch(grafico){
+			case 'google.visualization.BarChart':
+				var chart = new google.visualization.BarChart(document.getElementById(div));
+                chart.draw(data, obj);
+			break;
+			case 'google.visualization.DataTable':
+				var table = new google.visualization.Table(document.getElementById(div));
+                table.draw( data, obj); 
+			break;
+			case 'google.visualization.PieChart':
+				var chart = new google.visualization.PieChart(document.getElementById(div));
+                chart.draw( data, obj); 
+			break;
+			case 'google.visualization.ColumnChart':
+				var chart = new google.visualization.ColumnChart(document.getElementById(div));
+                chart.draw(data, obj);
+			break;
+		}
+       
+    }
+    //
+}
+String.prototype.trim= function() {//Agrega la función trim al objeto String
+   return this.replace(/(^\s*)|(\s*$)/g,""); //elimina espacios a izquierda y derecha
+}
+
+function getChartGdocs(chart,dataSource,sql,div,table){
+	
+	 var options;//={};
+		var source="";
+		var tipo="";
+		var consulta="";
+		var grafico="";
+		var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';//'get_chart_data/completionChart';
+        $.ajax({
+            type: "POST",
+            async: false,
+             url:doLoginMethodUrl,
+            data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+			success: function(json)
+			{
+				var arrJson = [];
+				arrJson = json.split('|');   
+				options = arrJson[0];
+				source  = arrJson[1];
+				var arrSource	= source.split(',');
+				var urlSpreadsheet	= arrSource[0];
+				tipo    = arrJson[2];
+				consulta    = arrJson[3];
+				grafico	= arrJson[4];
+				var opciones	= getOptionsObjets(options);//DESCOMENTAR ESTOOOO:::
+				var wrapper = new google.visualization.ChartWrapper({
+					dataSourceUrl: urlSpreadsheet,
+					chartType: grafico,
+					options:opciones,
+					containerId: div
+				});
+				wrapper.draw();
+			}
+
+		});
+}
+function handleQueryResponse(response,options,grafico) {
+	  if (response.isError()) {
+		alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+		return;
+	  }
+	
+}
+
+function getOptionsObjets(options){
+
+	//to get the options
+		
+        //divido cada property que viene con ;
+        var properties = options.split(';');
+		var obj = {};
+		var arr = [];
+        //itero dentro de cada tupla separada por ";"
+		properties.forEach(function(property) {
+            //divido la tupla en label y valor mediante ":"
+			var tup = property.split(':');
+			var remplazo	= tup[1];
+            //busco si tiene = el valor es porque adentro hay otro {label:value} si da -1 no esta
+            pos = remplazo.indexOf(",");
+            tup[0] = tup[0].replace(/_/g, ".");
+            //alert(tup[0]);
+            if( pos>0 ){
+                var values  = {};
+                //puede que el valor tenga adentro opciones separadas por ","
+                var valores = remplazo.split(',');
+                //itero cada tupla de valor que adentro contiene label=valor nuevamente
+                valores.forEach(function(val) {
+                    var aux = val.split('=');
+                    //cargo el arreglo de valores para la tupla superior
+                    var label   = aux[0];
+                    values[label]=aux[1];
+                    //alert(values[label]);
+                    //cargo la tupla en el objeto de opciones
+                    obj[tup[0]] = values;
+                });
+            }else{
+                pos2    = remplazo.indexOf("=");
+                if(pos2>0){
+                    var values  = {};
+                    //puede que el valor tenga adentro una sola tupla label=valor
+                    var aux = remplazo.split('=');
+                    //cargo el arreglo de valores para la tupla superior
+                    var label   = aux[0];
+                    values[label]=aux[1];
+                    obj[tup[0]] = values;
+                }else{
+                    //si la primer tupla dividida no tiene tuplas adentro la almaceno directamente en opciones
+                    var r   = remplazo.trim();
+                    obj[tup[0]] = r;
+                }
+                
+            }
+                        			
+		});
+		return obj;
+		//options
+	
+}
+/*funcion para grillas
+ si es grupoing grid usa json y si es gridwithsubgrid usa xml
+ * */
+
+ /*por ahora la comento*/
+function getGroupingGrid(chart,dataSource,sql,div,table){
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+   
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';
+    //alert("ramiro");
+    /*$.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+            var arrJson = [];
+            arrJson = json.split('|');   
+            options = arrJson[0];
+            source  = arrJson[1];
+            tipo    = arrJson[2];
+            
+          
+        }
+    });*/
+}
+function getIframe(chart,dataSource,sql,div,table){
+    var options;//={};
+    var source="";
+    var tipo="";
+    var consulta="";
+    var grafico="";
+    var iframe  = '<iframe ';   
+    var doLoginMethodUrl = '<? echo site_url("get_chart_data/completionChart");?>';
+    $.ajax({
+        type: "POST",
+        async: false,
+         url:doLoginMethodUrl,
+        data: {chart: chart,datasource: dataSource,sql:sql,table:table},
+        success: function(json)
+        {
+            var arrJson = [];
+            arrJson = json.split('|');   
+            options = arrJson[0];
+            arrOptions  = options.split(';');
+            arrOptions.forEach(function(property) {
+                       
+                var tup = property.split(':');
+                var tupi	= tup[1];
+                pos = tupi.indexOf("=");
+                if( pos>0 ){
+					tupi = tupi.replace("=",":"); 
+				}else{
+				
+				}
+                iframe += tup[0]+'="'+tupi+' "';
+            });
+            iframe += "/>"; 
+            document.getElementById(div).innerHTML = iframe;
+            
+           }
+            
+    });
+}
+<?php
+if (count($functions_charts)>0) {
+	//var_dump($functions_charts);
+	foreach ($functions_charts as $fucion) {
+        
+    echo $fucion;
+    
+    }
+} else {
+	
+}
+
+?>
+    /*$( ".portletColumn1" ).accordion({
+                collapsible: true,
+                active: true
+    
+                
+            });*/
+          
+});
+</script>
+</div>
+    </body>
+</html>
