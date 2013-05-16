@@ -2,6 +2,7 @@ import sys
 import sqlite3
 import hashlib
 import datetime
+import getpass
 
 class DBManager( object ):
 
@@ -98,13 +99,32 @@ class DBManager( object ):
 
    def createUser( self ):
       print "User Creation"
+      nombre   = str( raw_input('fullname:'))
       username = str( raw_input('Username: '))
       if self.__userExists( username ):
          print "Usuario existente - No se creara el nuevo usuario"
          return False
       else:
-         password = str( raw_input('Password: '))
-         print hashlib.sha224( password ).hexdigest()
+         password = getpass.getpass("Password: ")
+
+         print "User type"
+         print " 1 - Admin"
+         print " 2 - Common"
+         kind     = str( raw_input('::> ') )  
+         telefono = str( raw_input('telefono: '))
+
+         sql = """INSERT INTO empleado ('nombre', 'usuario', 'pass', 'id_sucursal', \
+                                        'status', 'telefono', 'type') \
+                                       VALUES  \
+                                       ('%s', '%', '%s', 1, 1, '%s', %s)""" % (nombre,
+                                                                                username,
+                                                                                password,
+                                                                                telefono,
+                                                                                kind)
+
+      result = self.__executeQuery( sql, debug=True )
+      result.commit()
+      result.close()
 
    def listUsers( self ):
       sql    = """SELECT nombre, usuario, status FROM empleado"""
